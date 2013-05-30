@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">HTW-Application</string>
+    <string name="htw_logo">HTW-Logo</string>
+    <string name="settings">Settings</string>
+    <string name="about">About Us</string>
+    <string name="gebaeudeplan">Gebäudeplan</string>
+    <string name="mensa">Mensa</string>
+    <string name="news">RSS News</string>
+    <string name="notenauskunft">Notenauskunft</string>
+    <string name="stundenplan">Studenplan</string>
+    <string name="title_about">HTW-App - About Us</string>
+    <string name="title_news">HTW-App - RSS News</string>
+    <string name="title_notenauskunft">HTW-App - Notenauskunft</string>
+    <string name="title_gebaeudeplan">HTW-App - Gebäudeplan</string>
+    <string name="title_mensa">HTW-App - Mensa</string>
+    <string name="title_stundenplan">HTW-App - Stundenplan</string>
+    <string name="title_settings">HTW-App - Settings</string>
+    
+</resources>
