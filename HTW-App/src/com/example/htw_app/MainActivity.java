@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
 		buttonNews.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				// NewsActivity öffnen
-				Intent intentNews = new Intent(MainActivity.this, NewsActivity.class);
+				Intent intentNews = new Intent(MainActivity.this, RSSNewsAnzeigen.class);
 				startActivity(intentNews);
 			}
 		});
