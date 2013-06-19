@@ -45,7 +45,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.htw_app.MensaActivity"
+            android:name="com.example.htw_app.mensaplan.SpeiseplanCAS"
+            android:label="@string/title_mensa" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.htw_app.mensaplan.SpeiseplanCRB"
+            android:label="@string/title_mensa" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.htw_app.mensaplan.SpeiseplanCRP"
+            android:label="@string/title_mensa" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.htw_app.mensaplan.MensaActivity"
             android:label="@string/title_mensa" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

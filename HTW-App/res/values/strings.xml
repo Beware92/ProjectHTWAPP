@@ -14,8 +14,8 @@
     <string name="title_news">HTW-App - RSS News</string>
     <string name="title_notenauskunft">HTW-App - Notenauskunft</string>
     <string name="title_gebaeudeplan">HTW-App - Gebäudeplan</string>
-    <string name="title_mensa">HTW-App - Mensa-Speiseplan</string>
-    <string name="title_stundenplan">HTW-App - Stundenplan</string>
+    <string name="title_mensa">HTW-App - Mensa-Speisepläne</string>
+    <string name="title_stundenplan">HTW-App - Stundenpläne</string>
     <string name="title_settings">HTW-App - Settings</string>
     <string name="title_activity_anzeigen">Anzeigen</string>
     <string name="action_settings">Settings</string>

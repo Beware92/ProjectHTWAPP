@@ -1,5 +1,6 @@
 package com.example.htw_app;
 
+import com.example.htw_app.mensaplan.*;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
