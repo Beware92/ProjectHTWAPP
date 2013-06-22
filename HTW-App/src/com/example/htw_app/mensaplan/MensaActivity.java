@@ -12,8 +12,6 @@ public class MensaActivity extends TabActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		//setContentView(R.layout.activity_stundenplan);
-
 		TabHost tabHost = getTabHost();
 
 		// Tab for CAS
