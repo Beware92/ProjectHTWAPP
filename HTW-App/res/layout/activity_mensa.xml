@@ -1,198 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal"
-        android:text="Mensa der HTW Saarbrücken\nCampus Alt - Saarbrücken"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:stretchColumns="1" >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="Speiseplan vom 17.06.2013 - 21.06.2013"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="20dp"
-        android:stretchColumns="1" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_marginLeft="10dp"
+            <TableRow
+                android:id="@+id/tableRow7"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="Mo:" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:text="TextVdsfdsfdsfdfsiewsdad" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:text="Mensa der HTW"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="TextViewasdsadsdsdsdasdsadsadsadsadasdasdsa" />
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_marginLeft="10dp"
+            <TableRow
+                android:id="@+id/tableRow6"
+                android:layout_marginTop="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="Di:" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_marginLeft="20dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
+                <TextView
+                    android:id="@+id/textView1"
+                    
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:text="Speiseplan"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
-        </TableRow>
+            </TableRow>
 
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_marginLeft="10dp"
+            <TableRow
+                android:id="@+id/tableRow8"
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="Mi:" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_marginLeft="20dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="" />
 
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Menü 1" />
 
-        <TableRow
-            android:id="@+id/tableRow4"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Menü 2" />
 
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_marginLeft="10dp"
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="Do:" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_marginLeft="20dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Mo:" />
 
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:text="" />
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="" />
 
-        <TableRow
-            android:id="@+id/tableRow5"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_marginLeft="10dp"
+            <TableRow
+                android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fr:" />
+                android:layout_marginTop="10dp" >
 
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_marginLeft="20dp"
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Di:" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="10dp" >
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Mi:" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:layout_marginTop="10dp" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Do:" />
 
-        <TableRow
-            android:id="@+id/tableRow6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="" />
 
-            <Button
-                android:id="@+id/button1"
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:layout_marginTop="10dp" >
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Fr:" />
 
-    </TableLayout>
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:text="" />
 
-</RelativeLayout>
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow9"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:text="Beilagen" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow10"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:text="Essensausgabe" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+                
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:gravity="center"
+                    android:text="" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>

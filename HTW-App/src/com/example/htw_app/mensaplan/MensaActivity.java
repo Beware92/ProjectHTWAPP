@@ -8,33 +8,33 @@ import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
 public class MensaActivity extends TabActivity {
+	
+	public static DatabaseHelper mDbHelper;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		TabHost tabHost = getTabHost();
 
-		// Tab for CAS
 		TabSpec casSpec = tabHost.newTabSpec("Mensa CAS");
 		casSpec.setIndicator("Mensa CAS");
 		Intent casIntent = new Intent(this, SpeiseplanCAS.class);
 		casSpec.setContent(casIntent);
 
-		// Tab for CRB
 		TabSpec crbSpec = tabHost.newTabSpec("Mensa CRB");
 		crbSpec.setIndicator("Mensa CRB");
 		Intent crbIntent = new Intent(this, SpeiseplanCRB.class);
 		crbSpec.setContent(crbIntent);
 
-		// Tab for CRP
 		TabSpec crpSpec = tabHost.newTabSpec("Mensa CRP");
 		crpSpec.setIndicator("Mensa CRP");
 		Intent crpIntent = new Intent(this, SpeiseplanCRP.class);
 		crpSpec.setContent(crpIntent);
 
-		// Adding all TabSpec to TabHost
 		tabHost.addTab(casSpec);
 		tabHost.addTab(crbSpec);
 		tabHost.addTab(crpSpec);
+		
+		mDbHelper = new DatabaseHelper(this);
 	}
 }
