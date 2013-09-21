@@ -102,6 +102,7 @@ public class MainActivity extends Activity {
 	// onOptionsItemSelected, reagiert auf klicks der ActionBar
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		/*
 		switch (item.getItemId()) {
 		case R.id.menu_settings: {
 			// SettingsActivity öffnen
@@ -114,5 +115,7 @@ public class MainActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 		}
+		*/
+		return true; //FIXME zeile entfernen!
 	}
 }
