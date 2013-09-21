@@ -35,13 +35,14 @@ public class GebaeudeplanActivity extends Activity {
 
     	super.onCreate(savedInstanceState);
     	htwMap = new HtwMapApplication();
+    	//htwMap = (HtwMapApplication)getIntent().getParcelableExtra("Map");
     	setContentView(R.layout.activity_gebaeudeplan);
     	showRoomDesc = false;
     	currentFloor = 0;
     	
 
     	initializeMaps();
-    	touchImageView = ((TouchImageView)findViewById(R.id.touchImageViewOut)); //this evtl weg
+    	touchImageView = ((TouchImageView)findViewById(R.id.touchImageViewOut)); 
     	tvCurrentFloor = ((TextView)findViewById(R.id.textViewCurrentFloor));
     	
     	

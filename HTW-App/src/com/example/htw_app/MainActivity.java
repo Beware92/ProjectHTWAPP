@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 		buttonGebaeudeplan.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				// GebaeudeplanActivity öffnen
-				Intent intentGebaeudeplan = new Intent(MainActivity.this, GebaeudeplanActivity.class);
+				Intent intentGebaeudeplan = new Intent(MainActivity.this, LoadScreenGebaeudeplan.class);
 				startActivity(intentGebaeudeplan);
 			}
 		});
@@ -119,3 +119,4 @@ public class MainActivity extends Activity {
 		return true; //FIXME zeile entfernen!
 	}
 }
+

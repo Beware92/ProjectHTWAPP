@@ -3,88 +3,145 @@ package com.gebaeudeplan;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageView;
 
 import com.example.htw_app.R;
 import com.larvalabs.svgandroid.SVGParser;
 
 public class LoadScreenGebaeudeplan extends Activity {
 
-	  private LoadMapsTask loadMapsTask;
+	  //private LoadMapsTask loadMapsTask;
 	  //private ImageView logo;
+	  private static int SPLASH_TIME_OUT = 3000;
+	  //private InitializeMapTask initializeMapTask;
+	  //private HtwMapApplication map;
 	  
-	  
-	  protected void onCreate(Bundle paramBundle)
-	  {
-	    super.onCreate(paramBundle);
-	    Log.i("**", "1");
-	    setContentView(R.layout.activity_loadgebaeudeplan);
-	    
-	    //this.loadMapsTask = new LoadMapsTask(null);
-	    //this.loadMapsTask.execute(new Void[0]);
-	    Log.i("**", "2");
-
-		Log.i("**", "3");
-		  Intent localIntent = new Intent(LoadScreenGebaeudeplan.this, GebaeudeplanActivity.class);
-		  Log.i("**", "4");
-		  LoadScreenGebaeudeplan.this.startActivity(localIntent);
-		  Log.i("**", "5");
-		  //LoadScreenGebaeudeplan.this.finish();
-		  Log.i("**", "6");
-		
-	  }
-	  
-	  protected void onDestroy() {
-		  //this.loadMapsTask.cancel(true);
-		  super.onDestroy();
-	  }
-	  
-	  
-	  private class LoadMapsTask extends AsyncTask<Void, Integer, Void> {
+	  protected void onCreate(Bundle savedInstanceState) {
+		  super.onCreate(savedInstanceState);
+		  Log.i("**", "1");
 		  
-		  private LoadMapsTask(String a) {
+		  setContentView(R.layout.activity_loadgebaeudeplan);
+		  
+		  
+		  initialize();
+		  Intent localIntent = new Intent(LoadScreenGebaeudeplan.this, GebaeudeplanActivity.class);
+		  LoadScreenGebaeudeplan.this.startActivity(localIntent);
+		  LoadScreenGebaeudeplan.this.finish();
+	      //this.initializeMapTask = new InitializeMapTask();
+	      //this.initializeMapTask.execute(map);
+	  }
+	    	
+	  
+	  
+
+	  
+	  private void initialize() {
+		  //HtwMapApplication map = (HtwMapApplication)this.getApplication();
+		  
+		  //Erdgeschoss - 0
+		  Log.i("**", "1");
+		  PictureDrawable floorE = SVGParser.getSVGFromResource(LoadScreenGebaeudeplan.this.getResources(), R.raw.e).createPictureDrawable();
+		  Log.i("**", "1");
+		  HtwMapApplication.getInstance();
+		  Log.i("**", "1");
+		  HtwMapApplication a = HtwMapApplication.getInstance();
+		  Log.i("**", "1");
+		  a.setMapFloorE(floorE);
+		  Log.i("**", "2");
+		  //map.setMapFloorE(floorE);
+		  //Log.i("**", a.getMapFloorE().toString());
+		  
+		  /*
+		  //Etage - 1
+		  PictureDrawable floorOne = SVGParser.getSVGFromResource(getResources(), R.raw.one).createPictureDrawable();
+		  htwMap.setMapFloor1(floorOne);
+		  PictureDrawable floorOneNoText = SVGParser.getSVGFromResource(getResources(), R.raw.oneno).createPictureDrawable();
+		  htwMap.setMapFloor1noDesc(floorOneNoText);
+		  //Etage - 2
+		  PictureDrawable floorTwo = SVGParser.getSVGFromResource(getResources(), R.raw.two).createPictureDrawable();
+		  htwMap.setMapFloor2(floorTwo);
+		  PictureDrawable floorTwoNoText = SVGParser.getSVGFromResource(getResources(), R.raw.twono).createPictureDrawable();
+		  htwMap.setMapFloor2noDesc(floorTwoNoText);
+		  //Etage - 3
+		  PictureDrawable floorTree = SVGParser.getSVGFromResource(getResources(), R.raw.tree).createPictureDrawable();
+		  htwMap.setMapFloor3(floorTree);
+		  PictureDrawable floorTreeNoText = SVGParser.getSVGFromResource(getResources(), R.raw.treeno).createPictureDrawable();
+		  htwMap.setMapFloor3noDesc(floorTreeNoText);
+		  */
+		  
+	  }
+	  
+	  /*
+	  private class InitializeMapTask extends AsyncTask<HtwMapApplication, Integer, Void> {
+
+		  private InitializeMapTask() {
 		  }
-
-		  protected Void doInBackground(Void[] paramArrayOfVoid)
-		  {
+		  
+		  //HtwMapApplication htwMap = new HtwMapApplication(); 
+		  @Override
+		  protected Void doInBackground(HtwMapApplication map) {
+			   
+			  //Erdgeschoss - 0
 			  
-			if (!isCancelled()) {
-				  PictureDrawable floorE = SVGParser.getSVGFromResource(LoadScreenGebaeudeplan.this.getResources(), R.raw.e).createPictureDrawable();
-				  HtwMapApplication.getInstance().setMapFloorE(floorE);
-			        Integer[] arrayOfInteger2 = new Integer[1];
-			        arrayOfInteger2[0] = Integer.valueOf(50);
-			        publishProgress(arrayOfInteger2);
+			  try {
+				  
+				  //HtwMapApplication map = (HtwMapApplication)this.
+				PictureDrawable floorE = SVGParser.getSVGFromResource(LoadScreenGebaeudeplan.this.getResources(), R.raw.e).createPictureDrawable();
+				map.setMapFloorE(floorE);
+				  //HtwMapApplication.getInstance().setMapFloorE(floorE);
+				  //PictureDrawable floorENoText = SVGParser.getSVGFromResource(getResources(), R.raw.eno).createPictureDrawable();
+				  //HtwMapApplication.getInstance().setMapFloorEnoDesc(floorENoText);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			if (!isCancelled()) {
-			  PictureDrawable floorEnoText = SVGParser.getSVGFromResource(LoadScreenGebaeudeplan.this.getResources(), R.raw.e).createPictureDrawable();
-			  HtwMapApplication.getInstance().setMapFloorEnoDesc(floorEnoText);
-		        Integer[] arrayOfInteger1 = new Integer[1];
-		        arrayOfInteger1[0] = Integer.valueOf(10);
-		        publishProgress(arrayOfInteger1);
-
-			}	
-			
+			  /*
+			  //Etage - 1
+			  PictureDrawable floorOne = SVGParser.getSVGFromResource(getResources(), R.raw.one).createPictureDrawable();
+			  htwMap.setMapFloor1(floorOne);
+			  PictureDrawable floorOneNoText = SVGParser.getSVGFromResource(getResources(), R.raw.oneno).createPictureDrawable();
+			  htwMap.setMapFloor1noDesc(floorOneNoText);
+			  //Etage - 2
+			  PictureDrawable floorTwo = SVGParser.getSVGFromResource(getResources(), R.raw.two).createPictureDrawable();
+			  htwMap.setMapFloor2(floorTwo);
+			  PictureDrawable floorTwoNoText = SVGParser.getSVGFromResource(getResources(), R.raw.twono).createPictureDrawable();
+			  htwMap.setMapFloor2noDesc(floorTwoNoText);
+			  //Etage - 3
+			  PictureDrawable floorTree = SVGParser.getSVGFromResource(getResources(), R.raw.tree).createPictureDrawable();
+			  htwMap.setMapFloor3(floorTree);
+			  PictureDrawable floorTreeNoText = SVGParser.getSVGFromResource(getResources(), R.raw.treeno).createPictureDrawable();
+			  htwMap.setMapFloor3noDesc(floorTreeNoText);
 			  
-			  //Hier weitere Stockwerke adden
 			  return null;
 		  }
-
-		  protected void onCancelled() {
-			  super.onCancelled();
-			  LoadScreenGebaeudeplan.this.finish();
-		  }
-
-		  protected void onPostExecute(Void paramVoid) {
+		  
+		    protected void onCancelled() {
+		      super.onCancelled();
+		      LoadScreenGebaeudeplan.this.finish();
+		    }		  
+		  
+	      protected void onPostExecute(Void paramVoid) {
 			  super.onPostExecute(paramVoid);
+			  Log.i("**", "onpostExecute");
+			  //Log.i("*htwMap*", htwMap.getMapFloor1().toString());
 			  Intent localIntent = new Intent(LoadScreenGebaeudeplan.this, GebaeudeplanActivity.class);
+			  //LoadScreenGebaeudeplan.this.startActivity(localIntent);
+			  //localIntent.setData(htwMap);
+			  
 			  LoadScreenGebaeudeplan.this.startActivity(localIntent);
 			  LoadScreenGebaeudeplan.this.finish();
+			  
 		  }
-	  }
-	  
+
+		@Override
+		protected Void doInBackground(HtwMapApplication... params) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		  
+	  }	  
+	  */
 }
 

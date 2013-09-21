@@ -1,10 +1,17 @@
 package com.gebaeudeplan;
 
+
+
 import android.app.Application;
 import android.graphics.drawable.Drawable;
 
+
 public class HtwMapApplication extends Application
 {
+	/**
+	 * 
+	 */
+	//private static final long serialVersionUID = 1L;
 	private static HtwMapApplication instance;
 	private Drawable mapFloorE;
 	private Drawable mapFloorEnoDesc;
@@ -15,18 +22,17 @@ public class HtwMapApplication extends Application
 	private Drawable mapFloor3;
 	private Drawable mapFloor3noDesc;
 	  
-	
-	
-	public static HtwMapApplication getInstance() {
-		return instance;
-	}
+
 	
 	
 	public void onCreate() {
 		super.onCreate();
 		instance = this;
 	}
-
+	
+	public static HtwMapApplication getInstance() {
+		return instance;
+	}
 
 	public Drawable getMapFloorE() {
 		return mapFloorE;
@@ -106,5 +112,8 @@ public class HtwMapApplication extends Application
 	public void setMapFloor3noDesc(Drawable mapFloor3noDesc) {
 		this.mapFloor3noDesc = mapFloor3noDesc;
 	}
+
+
+
 
 }
