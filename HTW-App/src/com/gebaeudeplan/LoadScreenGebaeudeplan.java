@@ -17,6 +17,7 @@ public class LoadScreenGebaeudeplan extends Activity {
 	  private static int SPLASH_TIME_OUT = 3000;
 	  //private InitializeMapTask initializeMapTask;
 	  //private HtwMapApplication map;
+	  //private static PictureDrawable floorE;
 	  
 	  protected void onCreate(Bundle savedInstanceState) {
 		  super.onCreate(savedInstanceState);
@@ -25,8 +26,9 @@ public class LoadScreenGebaeudeplan extends Activity {
 		  setContentView(R.layout.activity_loadgebaeudeplan);
 		  
 		  
-		  initialize();
+		  //initialize();
 		  Intent localIntent = new Intent(LoadScreenGebaeudeplan.this, GebaeudeplanActivity.class);
+		  
 		  LoadScreenGebaeudeplan.this.startActivity(localIntent);
 		  LoadScreenGebaeudeplan.this.finish();
 	      //this.initializeMapTask = new InitializeMapTask();
@@ -41,15 +43,12 @@ public class LoadScreenGebaeudeplan extends Activity {
 		  //HtwMapApplication map = (HtwMapApplication)this.getApplication();
 		  
 		  //Erdgeschoss - 0
-		  Log.i("**", "1");
+		  Log.i("**", "a");
 		  PictureDrawable floorE = SVGParser.getSVGFromResource(LoadScreenGebaeudeplan.this.getResources(), R.raw.e).createPictureDrawable();
-		  Log.i("**", "1");
-		  HtwMapApplication.getInstance();
-		  Log.i("**", "1");
-		  HtwMapApplication a = HtwMapApplication.getInstance();
-		  Log.i("**", "1");
-		  a.setMapFloorE(floorE);
-		  Log.i("**", "2");
+		  Log.i("**", "ab");
+		  HtwMapApplication.getInstance().setMapFloorE(floorE);
+		  Log.i("**", "b");
+
 		  //map.setMapFloorE(floorE);
 		  //Log.i("**", a.getMapFloorE().toString());
 		  

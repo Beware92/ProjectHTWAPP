@@ -34,6 +34,7 @@ public class GebaeudeplanActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
     	super.onCreate(savedInstanceState);
+    	
     	htwMap = new HtwMapApplication();
     	//htwMap = (HtwMapApplication)getIntent().getParcelableExtra("Map");
     	setContentView(R.layout.activity_gebaeudeplan);
@@ -49,7 +50,7 @@ public class GebaeudeplanActivity extends Activity {
 
     	setMapToE();
 
-
+    	
     	
     	toggleButtonShowRoomDesc = (ToggleButton) findViewById(R.id.toggleButtonRoomDesc);
     	toggleButtonShowRoomDesc.setOnClickListener(new OnClickListener() {

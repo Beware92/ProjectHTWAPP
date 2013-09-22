@@ -13,8 +13,8 @@ public class HtwMapApplication extends Application
 	 */
 	//private static final long serialVersionUID = 1L;
 	private static HtwMapApplication instance;
-	private Drawable mapFloorE;
-	private Drawable mapFloorEnoDesc;
+	private static Drawable mapFloorE;
+	private static Drawable mapFloorEnoDesc;
 	private Drawable mapFloor1;
 	private Drawable mapFloor1noDesc;
 	private Drawable mapFloor2;
