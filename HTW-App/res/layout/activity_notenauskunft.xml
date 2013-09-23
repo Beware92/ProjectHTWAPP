@@ -1,8 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
+    android:layout_height="wrap_content" >
 
-</LinearLayout>
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <EditText
+            android:id="@+id/editTextMatrikelnummer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextPasswort"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/editTextPasswort"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="Matrikelnummer"
+            android:inputType="number" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextPasswort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/editTextMatrikelnummer"
+            android:layout_marginTop="23dp"
+            android:ems="10"
+            android:hint="Passwort"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/textViewNotenauskunft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Notenauskunft - Login"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editTextPasswort"
+            android:layout_below="@+id/editTextPasswort"
+            android:layout_marginTop="17dp"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/buttonShowList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/buttonLogin"
+            android:layout_alignBottom="@+id/buttonLogin"
+            android:layout_alignRight="@+id/editTextPasswort"
+            android:text="Zeige Noten" />
+
+    </RelativeLayout>
+
+</ScrollView>

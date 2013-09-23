@@ -100,7 +100,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.htw_app.NotenauskunftActivity"
+            android:name="com.htw_app.notenauskunft.Notenauskunft"
+            android:label="@string/title_notenauskunft" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.htw_app.notenauskunft.NotenauskunftList"
             android:label="@string/title_notenauskunft" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

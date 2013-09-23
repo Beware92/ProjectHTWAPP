@@ -124,7 +124,7 @@ public class SpeiseplanCAS extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*
+		
 		switch (item.getItemId()) {
 		case R.id.action_mensa_refresh:
 			if (isOnline()) {
@@ -138,8 +138,6 @@ public class SpeiseplanCAS extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		*/
-		return true; //FIXME zeile entfernen!
 	}
 
 	public boolean isOnline() {

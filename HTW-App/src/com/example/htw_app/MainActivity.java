@@ -3,6 +3,7 @@ package com.example.htw_app;
 import com.example.htw_app.mensaplan.*;
 import com.gebaeudeplan.GebaeudeplanActivity;
 import com.gebaeudeplan.LoadScreenGebaeudeplan;
+import com.htw_app.notenauskunft.Notenauskunft;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -76,7 +77,7 @@ public class MainActivity extends Activity {
 		buttonNotenauskunft.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				// NotenauskunftActivity öffnen
-				Intent intentNotenauskunft = new Intent(MainActivity.this, NotenauskunftActivity.class);
+				Intent intentNotenauskunft = new Intent(MainActivity.this, Notenauskunft.class);
 				startActivity(intentNotenauskunft);
 			}
 		});
