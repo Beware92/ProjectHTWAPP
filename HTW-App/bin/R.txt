@@ -10,11 +10,10 @@ int drawable arrowup 0x7f020002
 int drawable gebaeudeplan 0x7f020003
 int drawable htw_logo 0x7f020004
 int drawable ic_launcher 0x7f020005
-int drawable icon 0x7f020006
-int drawable mensa 0x7f020007
-int drawable news 0x7f020008
-int drawable notenauskunft 0x7f020009
-int drawable stundenplan 0x7f02000a
+int drawable mensa 0x7f020006
+int drawable news 0x7f020007
+int drawable notenauskunft 0x7f020008
+int drawable stundenplan 0x7f020009
 int id ImageButtonFloorDown 0x7f090005
 int id ImageButtonFloorUp 0x7f090004
 int id RelativeLayout1 0x7f090001
