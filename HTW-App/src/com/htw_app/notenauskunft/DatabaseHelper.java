@@ -76,27 +76,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String BENUTZER_TYPE_ID = "INTEGER";
 	public static final String BENUTZER_FIELD_MTKNR = "mtknr";
 	public static final String BENUTZER_TYPE_MTKNR = "INTEGER";
-	public static final String BENUTZER_FIELD_FNR = "passwort";
-	public static final String BENUTZER_TYPE_FNR = "TEXT";
+	public static final String BENUTZER_FIELD_PASSWORT = "passwort";
+	public static final String BENUTZER_TYPE_PASSWORT = "TEXT";
+	public static final String BENUTZER_FIELD_STATUS = "status";
+	public static final String BENUTZER_TYPE_STATUS = "TEXT";
 	
 	private static final String CREATE_TABLE_NOTEN_KOPFDATEN = "CREATE TABLE " + TABLE_NOTEN_KOPFDATEN
 	+ "("
-		+ NOTEN_KOPFDATEN_FIELD_ID              + " " + NOTEN_KOPFDATEN_FIELD_ID                + " PRIMARY KEY AUTOINCREMENT" + ", "
-		+ NOTEN_KOPFDATEN_FIELD_MTKNR           + " " + NOTEN_KOPFDATEN_FIELD_MTKNR                                            + ", "
-		+ NOTEN_KOPFDATEN_FIELD_FNR             + " " + NOTEN_KOPFDATEN_FIELD_FNR                                              + ", "
-		+ NOTEN_KOPFDATEN_FIELD_ABSCHNITT       + " " + NOTEN_KOPFDATEN_FIELD_ABSCHNITT                                        + ", "
-		+ NOTEN_KOPFDATEN_FIELD_STG             + " " + NOTEN_KOPFDATEN_FIELD_STG                                              + ", "
-		+ NOTEN_KOPFDATEN_FIELD_FACH            + " " + NOTEN_KOPFDATEN_FIELD_FACH                                             + ", "
-		+ NOTEN_KOPFDATEN_FIELD_VERSUCH         + " " + NOTEN_KOPFDATEN_FIELD_VERSUCH                                          + ", "
-		+ NOTEN_KOPFDATEN_FIELD_PFLICHT         + " " + NOTEN_KOPFDATEN_FIELD_PFLICHT                                          + ", "
-		+ NOTEN_KOPFDATEN_FIELD_WICHTUNG        + " " + NOTEN_KOPFDATEN_FIELD_WICHTUNG                                         + ", "
-		+ NOTEN_KOPFDATEN_FIELD_SEMESTER        + " " + NOTEN_KOPFDATEN_FIELD_SEMESTER                                         + ", "
-		+ NOTEN_KOPFDATEN_FIELD_PSTATUS         + " " + NOTEN_KOPFDATEN_FIELD_PSTATUS                                          + ", "
-		+ NOTEN_KOPFDATEN_FIELD_CPCREDIT        + " " + NOTEN_KOPFDATEN_FIELD_CPCREDIT                                         + ", "
-		+ NOTEN_KOPFDATEN_FIELD_REIHENFOLGE     + " " + NOTEN_KOPFDATEN_FIELD_REIHENFOLGE                                      + ", "
-		+ NOTEN_KOPFDATEN_FIELD_ABMELDEDATUM    + " " + NOTEN_KOPFDATEN_FIELD_ABMELDEDATUM                                     + ", "
-		+ NOTEN_KOPFDATEN_FIELD_ART             + " " + NOTEN_KOPFDATEN_FIELD_ART                                              + ", "
-		+ NOTEN_KOPFDATEN_FIELD_MODULNR         + " " + NOTEN_KOPFDATEN_FIELD_MODULNR
+		+ NOTEN_KOPFDATEN_FIELD_ID              + " " + NOTEN_KOPFDATEN_TYPE_ID                + " PRIMARY KEY AUTOINCREMENT" + ", "
+		+ NOTEN_KOPFDATEN_FIELD_MTKNR           + " " + NOTEN_KOPFDATEN_TYPE_MTKNR                                            + ", "
+		+ NOTEN_KOPFDATEN_FIELD_FNR             + " " + NOTEN_KOPFDATEN_TYPE_FNR                                              + ", "
+		+ NOTEN_KOPFDATEN_FIELD_ABSCHNITT       + " " + NOTEN_KOPFDATEN_TYPE_ABSCHNITT                                        + ", "
+		+ NOTEN_KOPFDATEN_FIELD_STG             + " " + NOTEN_KOPFDATEN_TYPE_STG                                              + ", "
+		+ NOTEN_KOPFDATEN_FIELD_FACH            + " " + NOTEN_KOPFDATEN_TYPE_FACH                                             + ", "
+		+ NOTEN_KOPFDATEN_FIELD_VERSUCH         + " " + NOTEN_KOPFDATEN_TYPE_VERSUCH                                          + ", "
+		+ NOTEN_KOPFDATEN_FIELD_PFLICHT         + " " + NOTEN_KOPFDATEN_TYPE_PFLICHT                                          + ", "
+		+ NOTEN_KOPFDATEN_FIELD_WICHTUNG        + " " + NOTEN_KOPFDATEN_TYPE_WICHTUNG                                         + ", "
+		+ NOTEN_KOPFDATEN_FIELD_SEMESTER        + " " + NOTEN_KOPFDATEN_TYPE_SEMESTER                                         + ", "
+		+ NOTEN_KOPFDATEN_FIELD_PSTATUS         + " " + NOTEN_KOPFDATEN_TYPE_PSTATUS                                          + ", "
+		+ NOTEN_KOPFDATEN_FIELD_CPCREDIT        + " " + NOTEN_KOPFDATEN_TYPE_CPCREDIT                                         + ", "
+		+ NOTEN_KOPFDATEN_FIELD_REIHENFOLGE     + " " + NOTEN_KOPFDATEN_TYPE_REIHENFOLGE                                      + ", "
+		+ NOTEN_KOPFDATEN_FIELD_ABMELDEDATUM    + " " + NOTEN_KOPFDATEN_TYPE_ABMELDEDATUM                                     + ", "
+		+ NOTEN_KOPFDATEN_FIELD_ART             + " " + NOTEN_KOPFDATEN_TYPE_ART                                              + ", "
+		+ NOTEN_KOPFDATEN_FIELD_MODULNR         + " " + NOTEN_KOPFDATEN_TYPE_MODULNR
 	+ ")";
 	
 	private static final String CREATE_TABLE_NOTEN_DETAILDATEN = "CREATE TABLE " + TABLE_NOTEN_DETAILDATEN
@@ -118,9 +120,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private static final String CREATE_TABLE_BENUTZER = "CREATE TABLE " + TABLE_BENUTZER
 	+ "("
-		+ BENUTZER_FIELD_ID         + " " + BENUTZER_TYPE_ID         + " PRIMARY KEY AUTOINCREMENT" + ", "
-		+ BENUTZER_FIELD_MTKNR      + " " + BENUTZER_TYPE_MTKNR                                     + ", "
-		+ BENUTZER_FIELD_FNR    	+ " " + BENUTZER_TYPE_FNR
+		+ BENUTZER_FIELD_ID         + " " + BENUTZER_TYPE_ID           + ", "
+		+ BENUTZER_FIELD_MTKNR      + " " + BENUTZER_TYPE_MTKNR        + ", "
+		+ BENUTZER_FIELD_STATUS     + " " + BENUTZER_TYPE_STATUS       + ", "
+		+ BENUTZER_FIELD_PASSWORT   + " " + BENUTZER_TYPE_PASSWORT
 	+ ")";
 
 	public DatabaseHelper(Context context) {
@@ -133,7 +136,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			db.execSQL(CREATE_TABLE_NOTEN_DETAILDATEN);
 			db.execSQL(CREATE_TABLE_BENUTZER);
 			
-			db.execSQL("INSERT INTO user (mtknr, passwort) VALUES ('3584062', 'takeover')");
+			db.execSQL("INSERT INTO user (id, mtknr, passwort, status) VALUES ('1', '3584062', 'takeover', 'logout')");
 		} catch (SQLException ex) {
 			Log.d("HTW-App", "DatabaseHelper: " + ex);
 		}

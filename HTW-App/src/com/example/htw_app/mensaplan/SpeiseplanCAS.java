@@ -143,7 +143,7 @@ public class SpeiseplanCAS extends Activity {
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+		if (netInfo != null && netInfo.isConnected()) {
 			return true;
 		}
 		return false;
@@ -244,11 +244,12 @@ public class SpeiseplanCAS extends Activity {
 
 		protected String doInBackground(String... args) {
 			refreshAdapter.clear();
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CAS, "GET",
-					params);
 
 			try {
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CAS, "GET",
+						params);
+				
 				int success = json.getInt(TAG_SUCCESS);
 
 				if (success == 1) {

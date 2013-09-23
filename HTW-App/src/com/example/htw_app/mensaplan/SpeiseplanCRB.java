@@ -124,7 +124,6 @@ public class SpeiseplanCRB extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		/*
 		switch (item.getItemId()) {
 		case R.id.action_mensa_refresh:
 			if (isOnline()) {
@@ -138,14 +137,12 @@ public class SpeiseplanCRB extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-		*/
-		return true; //FIXME zeile entfernen!
 	}
 
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
-		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+		if (netInfo != null && netInfo.isConnected()) {
 			return true;
 		}
 		return false;
@@ -246,11 +243,12 @@ public class SpeiseplanCRB extends Activity {
 
 		protected String doInBackground(String... args) {
 			refreshAdapter.clear();
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CRB, "GET",
-					params);
 
 			try {
+				List<NameValuePair> params = new ArrayList<NameValuePair>();
+				JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CRB, "GET",
+						params);
+				
 				int success = json.getInt(TAG_SUCCESS);
 
 				if (success == 1) {
