@@ -4,6 +4,7 @@ import com.example.htw_app.mensaplan.*;
 import com.gebaeudeplan.GebaeudeplanActivity;
 import com.gebaeudeplan.LoadScreenGebaeudeplan;
 import com.htw_app.notenauskunft.Notenauskunft;
+import com.vorlesungsplan.StundenPlanActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -85,7 +86,7 @@ public class MainActivity extends Activity {
 		buttonStundenplan.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				// StundenplanActivity öffnen
-				Intent intentStundenplan = new Intent(MainActivity.this, StundenplanActivity.class);
+				Intent intentStundenplan = new Intent(MainActivity.this, StundenPlanActivity.class);
 				startActivity(intentStundenplan);
 			}
 		});

@@ -142,6 +142,43 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="com.vorlesungsplan.IngWI" 
+            android:label="@string/title_activity_ing_wi"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.ArchBau" 
+            android:label="@string/title_activity_arch_bau"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.Sozial" 
+            android:label="@string/title_activity_sozial"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.Wirtschaft" 
+            android:label="@string/title_activity_wirtschaft"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.WEBVIEW" 
+            android:label="@string/title_activity_webview"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.BauAbschluss" 
+            android:label="@string/title_activity_bau_abschluss"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.ArchAbschluss" 
+            android:label="@string/title_activity_arch_abschluss"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.ETAbschluss" 
+            android:label="@string/title_activity_etabschluss"> 
+        </activity>
+        <activity 
+            android:name="com.vorlesungsplan.PDFMethode" 
+            android:label="@string/title_activity_pdfmethode"> 
+        </activity>
+        
     </application>
 
 </manifest>

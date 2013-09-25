@@ -23,5 +23,17 @@
     <string name="title_activity_rssmain">RSSMain</string>
     <string name="title_rssMain">News</string>
     <string name="title_rssAnzeigen">Neuigkeit</string>
+    <string name="settings_vorlesungsplan">Einstellungen</string>
+    <string name="title_activity_ing_wi">IngWI</string>
+    <string name="title_activity_arch_bau">ArchBau</string>
+    <string name="title_activity_sozial">Sozial</string>
+    <string name="title_activity_wirtschaft">Wirtschaft</string>
+    <string name="title_activity_webview">WEBVIEW</string>
+    <string name="title_activity_bechlor_master">BechlorMaster</string>
+    <string name="title_activity_bachelor_master">BachelorMaster</string>
+    <string name="title_activity_bau_abschluss">BauAbschluss</string>
+    <string name="title_activity_arch_abschluss">ArchAbschluss</string>
+    <string name="title_activity_etabschluss">ETAbschluss</string>
+    <string name="title_activity_pdfmethode">PDFMethode</string>
 
 </resources>
