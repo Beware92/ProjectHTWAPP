@@ -28,7 +28,7 @@ public class LoadScreenGebaeudeplan extends Activity {
 		  
 		  //initialize();
 		  Intent localIntent = new Intent(LoadScreenGebaeudeplan.this, GebaeudeplanActivity.class);
-		  
+		  localIntent.putEx
 		  LoadScreenGebaeudeplan.this.startActivity(localIntent);
 		  LoadScreenGebaeudeplan.this.finish();
 	      //this.initializeMapTask = new InitializeMapTask();

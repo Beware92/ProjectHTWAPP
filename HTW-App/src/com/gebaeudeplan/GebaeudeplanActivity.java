@@ -1,6 +1,7 @@
 package com.gebaeudeplan;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class GebaeudeplanActivity extends Activity {
 	private ImageButton buttonFloorDown;
 	private int currentFloor;
 	private TextView tvCurrentFloor;
+	private ImageButton buttonSearch;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,15 @@ public class GebaeudeplanActivity extends Activity {
 			}
 		});
     	
-    	
+    	buttonSearch = (ImageButton) findViewById(R.id.buttonSearch);
+    	buttonSearch.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.i("**", "Search");
+				startSearch();
+			}
+		});
     	
 
     	
@@ -192,6 +202,13 @@ public class GebaeudeplanActivity extends Activity {
 			updateMapDrawable();
 			displayCurrentFloorNumber();
 		}
+	}
+	
+	public void startSearch() {
+		  
+		  Intent searchIntent = new Intent(GebaeudeplanActivity.this, RoomSearchActivity.class);
+		  GebaeudeplanActivity.this.startActivity(searchIntent);
+		 
 	}
 
 	public boolean isShowRoomDesc() {
