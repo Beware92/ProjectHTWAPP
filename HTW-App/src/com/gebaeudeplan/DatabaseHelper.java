@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String TABLE_FIELD_AMTSBEZ = "amtsbez";
 	public static final String TABLE_TYPE_AMTSBEZ = "TEXT";
 	public static final String TABLE_FIELD_TEL = "telefon";
-	public static final String TABLE_TYPE_TEL = "INTEGER";
+	public static final String TABLE_TYPE_TEL = "TEXT";
 	public static final String TABLE_FIELD_MAIL = "email";
 	public static final String TABLE_TYPE_MAIL = "TEXT";
 	public static final String TABLE_FIELD_ROOM = "raum";

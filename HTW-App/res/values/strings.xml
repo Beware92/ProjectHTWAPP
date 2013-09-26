@@ -23,5 +23,5 @@
     <string name="title_activity_rssmain">RSSMain</string>
     <string name="title_rssMain">News</string>
     <string name="title_rssAnzeigen">Neuigkeit</string>
-
+    <string name="title_roomSearchTitle">Details</string>
 </resources>

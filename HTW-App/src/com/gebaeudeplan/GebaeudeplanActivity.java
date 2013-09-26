@@ -40,6 +40,7 @@ public class GebaeudeplanActivity extends Activity {
     	htwMap = new HtwMapApplication();
     	//htwMap = (HtwMapApplication)getIntent().getParcelableExtra("Map");
     	setContentView(R.layout.activity_gebaeudeplan);
+    	
     	showRoomDesc = false;
     	currentFloor = 0;
     	
