@@ -27,15 +27,9 @@ public class ArchAbschluss extends Activity {
 
 	ProgressDialog mProgressDialog;
 	
-	final static String ARCHB_URL = "http://www.htw-saarland.de/aub/Studium/schule-fuer-architektur-saar/aktuell/ba_ss2013_kompakt2.pdf";
-	final static String ARCHM_URL = "http://www.htw-saarland.de/aub/Studium/schule-fuer-architektur-saar/aktuell/ma_ss2013kompakt_130415.pdf";
-	
-	String FileName;
-	String Path = "/sdcard/Download/";
-	
-	
-	File B = new File(Path + "ba_ss2013_kompakt2.pdf");
-	File M = new File(Path + "ma_ss2013kompakt_130415.pdf");
+	int fileIndex;
+		
+	PlanOpener opener;
 	
 	Abschluss[] items = { new Abschluss(1, "Bachelor"), 
 			new Abschluss(2, " Master"),
@@ -45,16 +39,7 @@ public class ArchAbschluss extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
 		
-		
-		
-		
-		mProgressDialog = new ProgressDialog(ArchAbschluss.this);
-		mProgressDialog.setMessage("A message");
-		mProgressDialog.setIndeterminate(false);
-		mProgressDialog.setMax(100);
-		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		
-		
+		opener = new PlanOpener();		
 		
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		ArrayAdapter<Abschluss> adapter = new ArrayAdapter<Abschluss>(this,
@@ -69,27 +54,11 @@ public class ArchAbschluss extends Activity {
 
 				switch (position) {
 				case 0:
-					if (B.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(B), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						DownloadFilesTask downloadPDF = new DownloadFilesTask();
-						downloadPDF.execute(ARCHB_URL);		
-					}
-						
+					opener.openPDF(Globals.ARCHB,ArchAbschluss.this);
 					break;
 				case 1:
-					if (M.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(M), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						DownloadFilesTask downloadPDF = new DownloadFilesTask();
-						downloadPDF.execute(ARCHM_URL);		
-					}
+					opener.openPDF(Globals.ARCHM,ArchAbschluss.this);
+					break;
 				}
 			}
 			
@@ -103,63 +72,6 @@ public class ArchAbschluss extends Activity {
 		return true;
 	}
 	
-	private class DownloadFilesTask extends AsyncTask<String, Integer, String> {
-
-		@Override
-	    protected void onPreExecute() {
-	        super.onPreExecute();
-	        mProgressDialog.show();
-	    }
-
-	   
 	
-		protected String doInBackground(String... sUrl) {
-			try {
-
-				URL url = new URL(sUrl[0]);
-				FileName = url.toString().substring(
-						url.toString().lastIndexOf("/"));
-
-				URLConnection conn = url.openConnection();
-				conn.connect();
-				int fileLength = conn.getContentLength();
-
-				InputStream bis = new BufferedInputStream(url.openStream());
-				OutputStream fos = new FileOutputStream(Path + FileName);
-				/*
-				 * Read bytes to the Buffer until there is nothing more to
-				 * read(-1).
-				 */
-	            byte data[] = new byte[1024];
-	            long total = 0;
-	            int count;
-	            while ((count = bis.read(data)) != -1) {
-	                total += count;
-	                // publishing the progress....
-	                publishProgress((int) (total * 100 / fileLength));
-	                fos.write(data, 0, count);
-	            }
-	            fos.flush();
-				fos.close();
-				bis.close();
-
-
-				
-			} catch (Exception e) {
-			}
-			return null;
-		}
-		 @Override
-		    protected void onProgressUpdate(Integer... progress) {
-		        super.onProgressUpdate(progress);
-		        mProgressDialog.setProgress(progress[0]);
-		        
-		    }
-		 @Override
-			protected void onPostExecute(String unused) {
-			 mProgressDialog.dismiss();
-			}
-		 
-	}
 
 }

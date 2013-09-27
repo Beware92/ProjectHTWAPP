@@ -2,10 +2,13 @@ package com.vorlesungsplan;
 
 import java.io.File;
 
+import net.sf.andpdf.pdfviewer.PdfViewerActivity;
+
 import com.example.htw_app.R;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -13,20 +16,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ETAbschluss extends Activity {
+	
+	PlanOpener opener;
 
-
 	
-	final static String INGWIETB_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/bachelor-studiengang-elektrotechnik-sommersemester-2013";
-	final static String INGWIETM_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/master-studiengang-elektrotechnik-sommersemester-2013";
-	
-	String Path = "/sdcard/Download/";
-	
-	
-	File ETB = new File(Path + "bachelor-studiengang-elektrotechnik-sommersemester-2013.pdf");
-	File ETM = new File(Path + "master-studiengang-elektrotechnik-sommersemester-2013.pdf");
 	
 	Abschluss[] items = { new Abschluss(1, "Bachelor"), 
 			new Abschluss(2, " Master"),
@@ -35,6 +32,7 @@ public class ETAbschluss extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		opener = new PlanOpener();
 		
 		
 		ListView listView = (ListView) findViewById(R.id.listView1);
@@ -50,26 +48,11 @@ public class ETAbschluss extends Activity {
 
 				switch (position) {
 				case 0:
-					if (ETB.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(ETB), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentMS = new Intent(Intent.ACTION_VIEW, Uri.parse(INGWIETB_URL));
-						startActivity(intentMS);
-					}
+					opener.openPDF(Globals.ETB,ETAbschluss.this);
 					break;
 				case 1:
-					if (ETM.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(ETM), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentMS = new Intent(Intent.ACTION_VIEW, Uri.parse(INGWIETM_URL));
-						startActivity(intentMS);
-					}
+					opener.openPDF(Globals.ETM,ETAbschluss.this);
+					break;
 				}
 			}
 			

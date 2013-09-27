@@ -9,10 +9,10 @@ import android.view.Menu;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class WEBVIEW extends Activity {
+public class HTMLVIEW extends Activity {
 
 	
-	String link;
+	String fileName;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +24,11 @@ public class WEBVIEW extends Activity {
 		WebView myWebView = (WebView) findViewById(R.id.webview);
        
         Intent urlIntent = getIntent();
-        link = urlIntent.getCharSequenceExtra("url").toString();
+        fileName = urlIntent.getCharSequenceExtra("url").toString();
         
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        myWebView.loadUrl(link);                   
+        myWebView.loadUrl("file://"+fileName);                   
   
 
 	}

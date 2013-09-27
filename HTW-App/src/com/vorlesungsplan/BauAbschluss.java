@@ -16,16 +16,9 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class BauAbschluss extends Activity {
+	
+	PlanOpener opener;
 
-	final static String BAUB_URL = "http://www.htw-saarland.de/aub/Studium/bi/bib/pdf-dateien/aktueller-stundenplan-ba-ss13";
-	final static String BAUM_URL = "http://www.htw-saarland.de/aub/Studium/bi/bib/pdf-dateien/master-stuplan-ss13";
-	
-	String Path = "/sdcard/Download/";
-	
-	
-	File B = new File(Path + "aktueller-stundenplan-ba-ss13.pdf");
-	File M = new File(Path + "master-stuplan-ss13.pdf");
-	
 	Abschluss[] items = { new Abschluss(1, "Bachelor"), 
 			new Abschluss(2, " Master"),
 			};
@@ -34,6 +27,7 @@ public class BauAbschluss extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
 		
+		opener = new PlanOpener();
 		
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		ArrayAdapter<Abschluss> adapter = new ArrayAdapter<Abschluss>(this,
@@ -48,26 +42,11 @@ public class BauAbschluss extends Activity {
 
 				switch (position) {
 				case 0:
-					if (B.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(B), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentMS = new Intent(Intent.ACTION_VIEW, Uri.parse(BAUB_URL));
-						startActivity(intentMS);
-					}
+					opener.openPDF(Globals.BAUB,BauAbschluss.this);
 					break;
 				case 1:
-					if (M.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(M), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentMS = new Intent(Intent.ACTION_VIEW, Uri.parse(BAUM_URL));
-						startActivity(intentMS);
-					}
+					opener.openPDF(Globals.BAUM,BauAbschluss.this);
+					break;				
 				}
 			}
 			

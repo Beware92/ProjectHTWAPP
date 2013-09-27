@@ -159,7 +159,7 @@
             android:label="@string/title_activity_wirtschaft"> 
         </activity>
         <activity 
-            android:name="com.vorlesungsplan.WEBVIEW" 
+            android:name="com.vorlesungsplan.HTMLVIEW" 
             android:label="@string/title_activity_webview"> 
         </activity>
         <activity 

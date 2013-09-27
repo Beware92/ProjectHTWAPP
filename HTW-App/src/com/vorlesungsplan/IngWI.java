@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.concurrent.ExecutionException;
 
 import com.example.htw_app.R;
 
@@ -15,42 +16,37 @@ import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class IngWI extends Activity {
 	
+	boolean filesLoaded= false;
+	PlanOpener opener;
 	
 	ProgressDialog mProgressDialog;
-	final static String INGWIPIKI_URL = "http://www-crypto.htw-saarland.de/weber/stundenplan/2013_ss.html";
-	final static String INGWIMB_URL = "http://www.htw-saarland.de/Members/m-sek/vorlesungs-und-prufungsplane/vorlesungsplan/stundenplanss13_14052013.pdf";
-	//final static String INGWIET_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/bachelor-studiengang-elektrotechnik-sommersemester-2013";
-	final static String INGWIBT_URL ="http://www.htw-saarland.de/Members/michael.moeller/stundenplan/stundenplan-sommersemester-2013";
-	final static String INGWIMS_URL ="http://www.htw-saarland.de/ingwi/studium/studienbereich-mechatronik-sensortechnik/mst_vorlesungen/vorlesungsplan-ss-2013";
-	final static String INGWIEE_URL ="http://www.htw-saarland.de/ingwi/studium/studienbereich-energiesystemtechnik/dokumente/stundenplan-ee-stand-23-04-2013-pdf";
+	
+	
+	int fileIndex;
 	
 	
 	
 	
-	
-	
-	String Path = "/sdcard/Download/";
 	String FileName;
-	File PK = new File(Path + "2013_ss.html");
-	File MB = new File(Path + "stundenplanss13_14052013.pdf");
-	File BT = new File(Path + "stundenplan-sommersemester-2013.pdf");
-	File MS = new File(Path + "vorlesungsplan-ss-2013.pdf");
-	File EE = new File(Path + "stundenplan-ee-stand-23-04-2013-pdf.pdf");
+	
 	
 
 	Studiengang[] items = { new Studiengang(1, "PI"), new Studiengang(2, "KI"),
@@ -65,12 +61,29 @@ public class IngWI extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
 
+		opener = new PlanOpener();
+		
+		//Zähler für downloadTask
+		fileIndex = 0;
+		
+		//Ordner erstellen
+		File folder = new File(Globals.vl_Path);
+		if(!(folder.exists())){
+			folder.mkdirs();
+		}	
+		Log.d("INFO", "Ordner "+Globals.vl_Path + " erstellt");
+		
+		
+
 		mProgressDialog = new ProgressDialog(IngWI.this);
 		mProgressDialog.setMessage("A message");
 		mProgressDialog.setIndeterminate(false);
 		mProgressDialog.setMax(100);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 		
+
+		//Plaene downloaden
+		downloadFiles();
 		
 		ListView listView = (ListView) findViewById(R.id.listView1);
 
@@ -89,90 +102,134 @@ public class IngWI extends Activity {
 
 				switch (position) {
 				case 0:
-					if (PK.exists()) {
-						Intent myIntent = new Intent(IngWI.this, WEBVIEW.class);
-						myIntent.putExtra("url", INGWIPIKI_URL);
-						startActivity(myIntent);
-					}else{
-						DownloadFilesTask download = new DownloadFilesTask();
-		                download.execute(INGWIPIKI_URL);
-						Intent myIntent = new Intent(IngWI.this, WEBVIEW.class);
-						myIntent.putExtra("url", INGWIPIKI_URL);
-						startActivity(myIntent);	
-					}
+					Log.d("Filepath", Globals.PK.getAbsolutePath());
+						opener.openHTML(Globals.PK.getAbsolutePath(),IngWI.this);
 					break;
 				case 1:
-					if (PK.exists()) {
-						Intent myIntent = new Intent(IngWI.this, WEBVIEW.class);
-						myIntent.putExtra("url", INGWIPIKI_URL);
-						startActivity(myIntent);
-					}else{
-						DownloadFilesTask download = new DownloadFilesTask();
-		                download.execute(INGWIPIKI_URL);
-						Intent myIntent = new Intent(IngWI.this, WEBVIEW.class);
-						myIntent.putExtra("url", INGWIPIKI_URL);
-						startActivity(myIntent);	
-					}
+						opener.openHTML(Globals.PK.getAbsolutePath(),IngWI.this);
 					break;
 				case 2:
-					if (MB.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(MB), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						DownloadFilesTask downloadPDF = new DownloadFilesTask();
-						downloadPDF.execute(INGWIMB_URL);		
-					}
+						opener.openPDF(Globals.MB,IngWI.this);						
 					break;
 				case 3:
-
 						Intent intentET = new Intent(IngWI.this, ETAbschluss.class);
 	                    startActivity(intentET);
 					
 					break;
 				case 4:
-					if (BT.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(BT), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentBT = new Intent(Intent.ACTION_VIEW, Uri.parse(INGWIBT_URL));
-						startActivity(intentBT);
-					}
+					
+						opener.openPDF(Globals.BT,IngWI.this);
 					break;
 				case 5:
-					if (MS.exists()) {
-						Intent intent = new Intent(Intent.ACTION_VIEW);
-	                    intent.setDataAndType(Uri.fromFile(MS), "application/pdf");
-	                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	                    startActivity(intent);
-					}else{
-						Intent intentMS = new Intent(Intent.ACTION_VIEW, Uri.parse(INGWIMS_URL));
-						startActivity(intentMS);
-					}
+						opener.openPDF(Globals.MS,IngWI.this);
 					break;
 				case 6:
-					if (EE.exists()) {
-						
-					    
-					      final Intent intent = new Intent(IngWI.this, PDFMethode.class);
-					      intent.putExtra("pdf", EE);
-					      startActivity(intent);
-					    
-					      
-					    
-					}else{
-						Intent intentEE = new Intent(Intent.ACTION_VIEW, Uri.parse(INGWIEE_URL));
-						startActivity(intentEE);
-					}
+						opener.openPDF(Globals.EE,IngWI.this);
 					break;
 				}
 			}
 		});
 	}
+	
+	private void downloadFiles(){
+		Log.d("INFO", "downloadFiles()");
+		if(filesLoaded == false){
+			DownloadFilesTask download = new DownloadFilesTask();
+			
+			switch (fileIndex){
 
+				case 0:{
+					if(!(Globals.MB.exists())){
+						//Maschinenbau
+						download.execute(Globals.INGWIMB_URL);	
+						Log.d("DOWNLOAD", Globals.INGWIMB_URL);						
+					}				
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 1:{
+					if(!(Globals.PK.exists())){
+						//PI/KI
+				        download.execute(Globals.INGWIPIKI_URL);
+				        Log.d("DOWNLOAD", Globals.INGWIPIKI_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 2:{
+					if(!(Globals.BT.exists())){
+						 //Biomediz. Technik
+				        download.execute(Globals.INGWIBT_URL);
+						Log.d("DOWNLOAD", Globals.INGWIBT_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 3:{
+					
+					if(!(Globals.MS.exists())){
+						// Mechatronik Sensortechnik
+						download.execute(Globals.INGWIMS_URL);
+						Log.d("DOWNLOAD", Globals.INGWIMS_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 4:{
+					if(!(Globals.EE.exists())){
+						//Erneuerbare Energien
+						download.execute(Globals.INGWIEE_URL);
+						Log.d("DOWNLOAD", Globals.INGWIEE_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 5:{
+					if(!(Globals.ETB.exists())){
+						//Elektrotechnik Bachelor
+						download.execute(Globals.INGWIETB_URL);
+						Log.d("DOWNLOAD", Globals.INGWIETB_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 6:{
+					if(!(Globals.ETM.exists())){
+						//Elektrotechnik Master
+						download.execute(Globals.INGWIETM_URL);
+						Log.d("DOWNLOAD", Globals.INGWIETM_URL);
+					}
+					else{
+						fileIndex++;
+						downloadFiles();
+					}
+					break;
+				}
+				case 7:{
+					filesLoaded = true;
+				}
+			}       
+		}
+		
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -204,7 +261,7 @@ public class IngWI extends Activity {
 				int fileLength = conn.getContentLength();
 
 				InputStream bis = new BufferedInputStream(url.openStream());
-				OutputStream fos = new FileOutputStream(Path + FileName);
+				OutputStream fos = new FileOutputStream(Globals.vl_Path + FileName);
 				/*
 				 * Read bytes to the Buffer until there is nothing more to
 				 * read(-1).
@@ -236,9 +293,12 @@ public class IngWI extends Activity {
 		    }
 		 @Override
 			protected void onPostExecute(String unused) {
-			 mProgressDialog.dismiss();
+			 mProgressDialog.dismiss();			
+			 fileIndex++;
+			 downloadFiles();
 			}
 		 
 	}
+	
 	
 }
