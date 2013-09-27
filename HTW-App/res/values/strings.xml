@@ -35,5 +35,11 @@
     <string name="title_activity_arch_abschluss">ArchAbschluss</string>
     <string name="title_activity_etabschluss">ETAbschluss</string>
     <string name="title_activity_pdfmethode">PDFMethode</string>
-
+    <string name="title_roomSearchTitle">Details</string>
+    
+    <string name="menu_settings">XXXX</string>
+    <string name="anzeigen_settings">XXXX</string>
+    <string name="action_mensa_refresh">XXXX</string>
+    <string name="rss_settings">XXXX</string>
+    <string name="webview_settings">XXXX</string>
 </resources>

@@ -1,65 +1,229 @@
 package com.gebaeudeplan;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import android.app.ListActivity;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.TextureView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.ToggleButton;
 
-public class RoomSearchActivity extends ListActivity {
-	private ArrayList<String> results = new ArrayList<String>();
-    private String tableName = DatabaseHelper.DATABASE_NAME;
-    private SQLiteDatabase newDB;
-    /** Called when the activity is first created. */
+import com.example.htw_app.R;
+
+public class RoomSearchActivity extends Activity implements View.OnClickListener, DialogInterface.OnClickListener, OnItemClickListener {
+	
+	//private ArrayList results = new ArrayList<SearchResultElement>();
+
+    
+    private int rowIdName;
+    private int rowIdPreName;
+    private int rowIdTel;
+    private int rowIdRoom;
+    private int rowIdTitle;
+    private int rowIdMail;
+    private int rowId;
+    
+    private PopupWindow popUpWindow;
+    private Button searchButton;
+    private EditText searchText;
+    private ListView listView;
+    private List<SearchResultElement> resultList;
+    
+    
+    private String regEx = ".*";
+    private String vorwahl = "0681 5867 ";
+
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        openAndQueryDatabase();
+        setContentView(R.layout.activity_searchroom);
+
          
-        displayResultList();
+        searchButton = (Button) findViewById(R.id.roomSearchButton);
+        searchButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				search();
+				
+			}
+		});
+
+        searchText = (EditText) findViewById(R.id.searchText);
+        listView = (ListView) findViewById(R.id.roomList);
+
+        
+        
+        
+
          
          
     }
-    private void displayResultList() {
-        TextView tView = new TextView(this);
-        tView.setText("This data is retrieved from the database and only 4 " +
-                "of the results are displayed");
-        getListView().addHeaderView(tView);
-         
-        setListAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.activity_list_item, results));
-        getListView().setTextFilterEnabled(true);
-         
+    
+
+    
+    private void search() {
+    	try {
+    		resultList = new ArrayList<SearchResultElement>();
+    		
+			DatabaseHelper dbHelper;
+			dbHelper = new DatabaseHelper(this);
+			SQLiteDatabase db = dbHelper.getReadableDatabase();
+			
+			String sql = "SELECT * FROM roomlist";
+			Cursor result = db.rawQuery(sql, null);
+			
+			String[] searchString = searchText.getText().toString().split("\\s+");
+			
+			if (result.moveToFirst()) {
+				rowIdName = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_NAME);
+				rowIdPreName = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_PRENAME);
+				rowIdRoom = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_ROOM);
+				rowIdMail = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_MAIL);
+				rowIdTel = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_TEL);
+				rowIdTitle = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_AMTSBEZ);
+				rowId = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_ID);
+			}
+			
+			do {
+				
+				int matchCounter = 0;
+				
+				String name = result.getString(rowIdName);
+				String prename = result.getString(rowIdPreName);
+				String room = result.getString(rowIdRoom);
+				String title = result.getString(rowIdTitle);
+				String mail = result.getString(rowIdMail);
+				String tel = result.getString(rowIdTel);
+				int itemId = result.getInt(rowId);
+				Log.i("**", name);
+				
+				for (int i = 0; i < searchString.length; i++) {
+					Log.i("Search for", searchString[i]);
+					if (matchesString(searchString[i], name, prename, room)) {
+						matchCounter++;
+					}
+				}
+				
+				if (matchCounter == searchString.length) {
+
+					SearchResultElement foundElement = new SearchResultElement(name, prename, room, title, mail, tel, itemId);
+					resultList.add(foundElement);
+					Log.i("***", foundElement.toString());
+				}
+
+			} while (result.moveToNext()); //FIXME DB schliessen
+			db.close();
+			result.close();
+			
+			SearchResultAdapter adapter = new SearchResultAdapter(this, R.id.roomList, resultList);
+			listView.setAdapter(adapter);
+			listView.setOnItemClickListener(this);
+			
+        } catch (Exception e) {
+			e.printStackTrace();
+		}
     }
-    private void openAndQueryDatabase() {
-        try {
-            DatabaseHelper dbHelper = new DatabaseHelper(this.getApplicationContext());
-            newDB = dbHelper.getWritableDatabase();
-            Cursor c = newDB.rawQuery("SELECT * FROM " + tableName , null);
- 
-            if (c != null ) {
-                if  (c.moveToFirst()) {
-                    do {
-                    	
-                        String firstName = c.getString(c.getColumnIndex("vorname"));
-                        String lastName = c.getString(c.getColumnIndex("nachname"));
-                        //int age = c.getInt(c.getColumnIndex("Age"));
-                        results.add("Name: " + firstName + ",Nachname: " + lastName);
-                    } while (c.moveToNext());
-                }
-            }          
-        } catch (SQLiteException se ) {
-            Log.e(getClass().getSimpleName(), "Could not create or Open the database");
-        } finally {
-            if (newDB != null)
-                newDB.execSQL("DELETE FROM " + tableName);
-                newDB.close();
-        }
- 
+    
+    private boolean matchesString (String toCompare, String s1, String s2, String s3) {
+    	if (s1.matches(regEx + toCompare + regEx) | s2.matches(regEx + toCompare + regEx) | s3.matches(regEx + toCompare + regEx)) {
+    		return true;
+    	}
+    	return false;
     }
+
+
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		SearchResultElement selectedElement = (SearchResultElement) listView.getItemAtPosition(position);
+		
+		String name = selectedElement.getName();
+		String prename = selectedElement.getPrename();
+		String room = selectedElement.getRoom();
+		String tel = selectedElement.getTel();
+		String title = selectedElement.getTitle();
+		String mail = selectedElement.getMail();
+		
+		String info = "";
+		String headLine = title + " " + prename + " " + name;
+		Boolean mailExisting = false;
+		Boolean phoneExisting = false;
+		
+
+		
+		if (room != "") {
+			info = info + "Raum: " + room + "\n";
+		}
+		if (tel != "") {
+			info = info + "Tel.:\n" + vorwahl + tel + "\n";
+			phoneExisting = true;
+			
+		}
+		if (mail != "") {
+			info = info + "E-Mail:\n" + mail + "\n";
+			mailExisting = true;
+		}
+			
+	
+		Intent detailIntent = new Intent(getApplicationContext(), SearchResultDetails.class);
+		Bundle detailBundle = new Bundle();
+		
+		detailBundle.putString("title", headLine);
+		detailBundle.putString("content", info);
+		detailBundle.putBoolean("phoneExisting", phoneExisting);
+		detailBundle.putBoolean("mailExisting", mailExisting);
+		
+		detailIntent.putExtras(detailBundle);
+		startActivity(detailIntent);
+		
+
+		
+		
+		//REM vortrag: oeffnungszeiten einfuegen + sonstige infos
+		
+
+		
+	}
+
+
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+
+    
 }

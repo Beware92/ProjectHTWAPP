@@ -179,6 +179,25 @@
             android:label="@string/title_activity_pdfmethode"> 
         </activity>
         
+        <activity android:label="@string/title_gebaeudeplan" android:name="com.gebaeudeplan.RoomSearchActivity">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:label="@string/title_roomSearchTitle" android:name="com.gebaeudeplan.SearchResultDetails">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        
+        
+        
+        
     </application>
 
 </manifest>
