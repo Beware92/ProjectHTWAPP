@@ -118,7 +118,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.htw_app.StundenplanActivity"
+            android:name="com.vorlesungsplan.StundenPlanActivity"
             android:label="@string/title_stundenplan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
