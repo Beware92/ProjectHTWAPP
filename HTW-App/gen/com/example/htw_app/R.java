@@ -28,30 +28,35 @@ public final class R {
         public static final int about=0x7f020000;
         public static final int arrowdown=0x7f020001;
         public static final int arrowup=0x7f020002;
-        public static final int back01=0x7f020003;
-        public static final int back02=0x7f020004;
-        public static final int doc=0x7f020005;
-        public static final int folder=0x7f020006;
-        public static final int gebaeudeplan=0x7f020007;
-        public static final int htw_logo=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int icon=0x7f02000a;
-        public static final int left_arrow=0x7f02000b;
-        public static final int mensa=0x7f02000c;
-        public static final int news=0x7f02000d;
-        public static final int notenauskunft=0x7f02000e;
-        public static final int pdf=0x7f02000f;
-        public static final int right_arrow=0x7f020010;
-        public static final int stundenplan=0x7f020011;
-        public static final int zoom_in=0x7f020012;
-        public static final int zoom_out=0x7f020013;
+        public static final int aub=0x7f020003;
+        public static final int back01=0x7f020004;
+        public static final int back02=0x7f020005;
+        public static final int doc=0x7f020006;
+        public static final int folder=0x7f020007;
+        public static final int gebaeudeplan=0x7f020008;
+        public static final int htw=0x7f020009;
+        public static final int htw_logo=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int icon=0x7f02000c;
+        public static final int ingwi=0x7f02000d;
+        public static final int left_arrow=0x7f02000e;
+        public static final int mensa=0x7f02000f;
+        public static final int news=0x7f020010;
+        public static final int notenauskunft=0x7f020011;
+        public static final int pdf=0x7f020012;
+        public static final int right_arrow=0x7f020013;
+        public static final int sowi=0x7f020014;
+        public static final int stundenplan=0x7f020015;
+        public static final int university=0x7f020016;
+        public static final int zoom_in=0x7f020017;
+        public static final int zoom_out=0x7f020018;
     }
     public static final class id {
         public static final int ImageButtonFloorDown=0x7f090005;
         public static final int ImageButtonFloorUp=0x7f090004;
         public static final int RelativeLayout1=0x7f090001;
-        public static final int action_mensa_refresh=0x7f090055;
-        public static final int anzeigen_settings=0x7f090054;
+        public static final int action_mensa_refresh=0x7f090059;
+        public static final int anzeigen_settings=0x7f090058;
         public static final int btExit=0x7f090050;
         public static final int btOK=0x7f090051;
         public static final int buttonAbout=0x7f090011;
@@ -66,20 +71,24 @@ public final class R {
         public static final int editTextMatrikelnummer=0x7f090037;
         public static final int editTextPasswort=0x7f090038;
         public static final int etPassword=0x7f09004f;
+        public static final int ibtnAuB=0x7f090055;
+        public static final int ibtnIngwi=0x7f090054;
+        public static final int ibtnSowi=0x7f090053;
         public static final int imageButtonPopUpCancel=0x7f090043;
         public static final int imageButtonPopUpMail=0x7f090044;
         public static final int imageButtonPopUpPhone=0x7f090042;
         public static final int imageHTW=0x7f09000a;
+        public static final int imageView2=0x7f090052;
         public static final int listView1=0x7f090045;
-        public static final int menu_settings=0x7f090052;
+        public static final int menu_settings=0x7f090056;
         public static final int pagenum_edit=0x7f090048;
         public static final int roomList=0x7f09003f;
         public static final int roomSearchButton=0x7f09003e;
         public static final int rssFeedListe=0x7f09003c;
         public static final int rssWebView=0x7f090000;
-        public static final int rss_settings=0x7f090056;
+        public static final int rss_settings=0x7f09005a;
         public static final int searchText=0x7f09003d;
-        public static final int settings_vorlesungsplan=0x7f090053;
+        public static final int settings_vorlesungsplan=0x7f090057;
         public static final int tableRow1=0x7f09001e;
         public static final int tableRow10=0x7f090034;
         public static final int tableRow11=0x7f090036;
@@ -134,7 +143,7 @@ public final class R {
         public static final int touchImageViewOut=0x7f090002;
         public static final int username_view=0x7f090047;
         public static final int webview=0x7f090046;
-        public static final int webview_settings=0x7f090057;
+        public static final int webview_settings=0x7f09005b;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -154,6 +163,7 @@ public final class R {
         public static final int dialog_pagenumber=0x7f03000e;
         public static final int listviewelement_searchroom=0x7f03000f;
         public static final int pdf_file_password=0x7f030010;
+        public static final int stundenplan=0x7f030011;
     }
     public static final class menu {
         public static final int action_bar=0x7f080000;

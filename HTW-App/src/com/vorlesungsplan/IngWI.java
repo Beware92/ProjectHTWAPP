@@ -76,7 +76,7 @@ public class IngWI extends Activity {
 		
 
 		mProgressDialog = new ProgressDialog(IngWI.this);
-		mProgressDialog.setMessage("A message");
+		mProgressDialog.setMessage("Download...");
 		mProgressDialog.setIndeterminate(false);
 		mProgressDialog.setMax(100);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);

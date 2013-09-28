@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 public class StundenPlanActivity extends Activity {
@@ -23,39 +25,41 @@ public class StundenPlanActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_vorlesungsplan);
+		setContentView(R.layout.stundenplan);
 
-		ListView listView1 = (ListView) findViewById(R.id.listView1);
+		ImageButton buttonAuB = (ImageButton) this.
+				findViewById(R.id.ibtnAuB);
+		ImageButton buttonIngwi = (ImageButton) this
+				.findViewById(R.id.ibtnIngwi);
+		ImageButton buttonSowi = (ImageButton) this.
+				findViewById(R.id.ibtnSowi);
 
-		ArrayAdapter<Fakultaet> adapter = new ArrayAdapter<Fakultaet>(this,
-				android.R.layout.simple_list_item_1, items);
+		// Button-Listener
+				buttonAuB.setOnClickListener(new OnClickListener() {
+					public void onClick(View arg0) {
+						// AboutActivity öffnen
+						Intent myIntent = new Intent(StundenPlanActivity.this, ArchBau.class);
+						startActivity(myIntent);
+					}
+				});
 
-		listView1.setAdapter(adapter);
+				// Button-Listener
+				buttonIngwi.setOnClickListener(new OnClickListener() {
+					public void onClick(View arg0) {
+						// AboutActivity öffnen
+						Intent myIntent = new Intent(StundenPlanActivity.this, IngWI.class);
+						startActivity(myIntent);
+					}
+				});
 
-		listView1.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				switch (position) {
-				case 0:
-					Intent myIntent = new Intent(StundenPlanActivity.this, IngWI.class);
-					startActivity(myIntent);
-					break;
-				case 1:
-					Intent myIntent1 = new Intent(StundenPlanActivity.this,
-							ArchBau.class);
-					startActivity(myIntent1);
-					break;
-				case 2:
-					Intent myIntent2 = new Intent(StundenPlanActivity.this,
-							Sozial.class);
-					startActivity(myIntent2);
-					break;
-				
-				}
-			}
-		});
-
+				// Button-Listener
+				buttonSowi.setOnClickListener(new OnClickListener() {
+					public void onClick(View arg0) {
+						// AboutActivity öffnen
+						Intent myIntent = new Intent(StundenPlanActivity.this, Sozial.class);
+						startActivity(myIntent);
+					}
+				});
 	}
 
 	@Override

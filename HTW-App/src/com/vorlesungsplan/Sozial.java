@@ -51,7 +51,7 @@ public class Sozial extends Activity {
 		opener = new PlanOpener();
 
 		mProgressDialog = new ProgressDialog(Sozial.this);
-		mProgressDialog.setMessage("A message");
+		mProgressDialog.setMessage("Download...");
 		mProgressDialog.setIndeterminate(false);
 		mProgressDialog.setMax(100);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
