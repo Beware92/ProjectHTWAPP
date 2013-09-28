@@ -7,7 +7,8 @@ import android.os.Environment;
 public class Globals {
 	
 	final static String vl_Path = Environment.getExternalStorageDirectory().toString()+ "/htw_app/vl_plaene/";
-	
+	final static String NETWORK_OFFLINE = "Netzwerkverbindung pruefen!";
+	final static String NETWORK_ABORT = "Dateidownload abgebrochen!";
 
 	final static String INGWIPIKI_URL = "http://www-crypto.htw-saarland.de/weber/stundenplan/2013_ss.html";
 	final static String PKFilename = INGWIPIKI_URL.substring(INGWIPIKI_URL.lastIndexOf("/")).replaceFirst("/", "");

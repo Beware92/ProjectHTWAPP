@@ -18,6 +18,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -134,99 +136,114 @@ public class IngWI extends Activity {
 	private void downloadFiles(){
 		Log.d("INFO", "downloadFiles()");
 		if(filesLoaded == false){
-			DownloadFilesTask download = new DownloadFilesTask();
 			
-			switch (fileIndex){
-
-				case 0:{
-					if(!(Globals.MB.exists())){
-						//Maschinenbau
-						download.execute(Globals.INGWIMB_URL);	
-						Log.d("DOWNLOAD", Globals.INGWIMB_URL);						
-					}				
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
-				}
-				case 1:{
-					if(!(Globals.PK.exists())){
-						//PI/KI
-				        download.execute(Globals.INGWIPIKI_URL);
-				        Log.d("DOWNLOAD", Globals.INGWIPIKI_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
-				}
-				case 2:{
-					if(!(Globals.BT.exists())){
-						 //Biomediz. Technik
-				        download.execute(Globals.INGWIBT_URL);
-						Log.d("DOWNLOAD", Globals.INGWIBT_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
-				}
-				case 3:{
+			if(isOnline()){
+				try{
+					DownloadFilesTask download = new DownloadFilesTask();
 					
-					if(!(Globals.MS.exists())){
-						// Mechatronik Sensortechnik
-						download.execute(Globals.INGWIMS_URL);
-						Log.d("DOWNLOAD", Globals.INGWIMS_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
+					switch (fileIndex){
+
+						case 0:{
+							if(!(Globals.MB.exists())){
+								//Maschinenbau
+								download.execute(Globals.INGWIMB_URL);	
+								Log.d("DOWNLOAD", Globals.INGWIMB_URL);						
+							}				
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 1:{
+							if(!(Globals.PK.exists())){
+								//PI/KI
+						        download.execute(Globals.INGWIPIKI_URL);
+						        Log.d("DOWNLOAD", Globals.INGWIPIKI_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 2:{
+							if(!(Globals.BT.exists())){
+								 //Biomediz. Technik
+						        download.execute(Globals.INGWIBT_URL);
+								Log.d("DOWNLOAD", Globals.INGWIBT_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 3:{
+							
+							if(!(Globals.MS.exists())){
+								// Mechatronik Sensortechnik
+								download.execute(Globals.INGWIMS_URL);
+								Log.d("DOWNLOAD", Globals.INGWIMS_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 4:{
+							if(!(Globals.EE.exists())){
+								//Erneuerbare Energien
+								download.execute(Globals.INGWIEE_URL);
+								Log.d("DOWNLOAD", Globals.INGWIEE_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 5:{
+							if(!(Globals.ETB.exists())){
+								//Elektrotechnik Bachelor
+								download.execute(Globals.INGWIETB_URL);
+								Log.d("DOWNLOAD", Globals.INGWIETB_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 6:{
+							if(!(Globals.ETM.exists())){
+								//Elektrotechnik Master
+								download.execute(Globals.INGWIETM_URL);
+								Log.d("DOWNLOAD", Globals.INGWIETM_URL);
+							}
+							else{
+								fileIndex++;
+								downloadFiles();
+							}
+							break;
+						}
+						case 7:{
+							filesLoaded = true;
+						}
+					}       
 				}
-				case 4:{
-					if(!(Globals.EE.exists())){
-						//Erneuerbare Energien
-						download.execute(Globals.INGWIEE_URL);
-						Log.d("DOWNLOAD", Globals.INGWIEE_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
+				catch (Exception e){
+					Toast toast = Toast.makeText(this, Globals.NETWORK_ABORT, Toast.LENGTH_SHORT);
+					toast.show();
 				}
-				case 5:{
-					if(!(Globals.ETB.exists())){
-						//Elektrotechnik Bachelor
-						download.execute(Globals.INGWIETB_URL);
-						Log.d("DOWNLOAD", Globals.INGWIETB_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
-				}
-				case 6:{
-					if(!(Globals.ETM.exists())){
-						//Elektrotechnik Master
-						download.execute(Globals.INGWIETM_URL);
-						Log.d("DOWNLOAD", Globals.INGWIETM_URL);
-					}
-					else{
-						fileIndex++;
-						downloadFiles();
-					}
-					break;
-				}
-				case 7:{
-					filesLoaded = true;
-				}
-			}       
+				
+			}
+			else{
+				Toast toast = Toast.makeText(this, Globals.NETWORK_OFFLINE, Toast.LENGTH_SHORT);
+				toast.show();
+			}
+			
 		}
 		
 	}
@@ -300,5 +317,18 @@ public class IngWI extends Activity {
 		 
 	}
 	
+	/**
+	 * Methode um Online-Verfuegbarkeit zu testen
+	 * @return Online Offline
+	 */
+	public boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}	
 	
 }

@@ -10,11 +10,14 @@ import java.net.URLConnection;
 
 import com.example.htw_app.R;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -22,31 +25,30 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class Sozial extends Activity {
 
-	boolean filesLoaded= false;
+	boolean filesLoaded = false;
 	PlanOpener opener;
 	int fileIndex;
 	ProgressDialog mProgressDialog;
-	
+
 	String FileName;
-	
-	
-	
-	
-	Studiengang[] items = { new Studiengang(1, "Management und Expertise im Pflege- und Gesundheitswesen"), 
+
+	Studiengang[] items = {
+			new Studiengang(1,
+					"Management und Expertise im Pflege- und Gesundheitswesen"),
 			new Studiengang(2, "Soziale Arbeit und PŠdagogik der Kindheit"),
 			new Studiengang(3, "PŠdagogik der Kindheit"),
-			new Studiengang(4, "Pflege")
-			};
-			
+			new Studiengang(4, "Pflege") };
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
-		
+
 		fileIndex = 0;
 		opener = new PlanOpener();
 
@@ -55,59 +57,71 @@ public class Sozial extends Activity {
 		mProgressDialog.setIndeterminate(false);
 		mProgressDialog.setMax(100);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		
+
 		downloadFiles();
-		
+
 		ListView listView = (ListView) findViewById(R.id.listView1);
 
 		ArrayAdapter<Studiengang> adapter = new ArrayAdapter<Studiengang>(this,
 				android.R.layout.simple_list_item_1, items);
 
 		listView.setAdapter(adapter);
-		
-		
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
 				switch (position) {
 				case 0:
-					opener.openPDF(Globals.SOZIALMEPG,Sozial.this);
+					opener.openPDF(Globals.SOZIALMEPG, Sozial.this);
 					break;
-				
+
 				}
 			}
 		});
-		
+
 	}
-	
-	private void downloadFiles(){
+
+	private void downloadFiles() {
 		Log.d("INFO", "downloadFiles()");
-		if(filesLoaded == false){
-			DownloadFilesTask download = new DownloadFilesTask();
-			
-			switch (fileIndex){
+		if (filesLoaded == false) {
+			if (isOnline()) {
+				try {
+					DownloadFilesTask download = new DownloadFilesTask();
 
-				case 0:{
-					if(!(Globals.SOZIALMEPG.exists())){
-						//Sozialwissenschaften
-						download.execute(Globals.SOZIALMEPG_URL);	
-						Log.d("DOWNLOAD", Globals.SOZIALMEPG_URL);						
-					}				
-					else{
-						fileIndex++;
-						downloadFiles();
+					switch (fileIndex) {
+
+					case 0: {
+						if (!(Globals.SOZIALMEPG.exists())) {
+							// Sozialwissenschaften
+							download.execute(Globals.SOZIALMEPG_URL);
+							Log.d("DOWNLOAD", Globals.SOZIALMEPG_URL);
+						} else {
+							fileIndex++;
+							downloadFiles();
+						}
+						break;
 					}
-					break;
-				}
-				case 1:{
+					case 1: {
 
-					filesLoaded = true;
-					break;
+						filesLoaded = true;
+						break;
+					}
+					}
+				} catch (Exception e) {
+					Toast toast = Toast.makeText(this, Globals.NETWORK_ABORT,
+							Toast.LENGTH_SHORT);
+					toast.show();
 				}
-			}       
+
+			} else {
+				Toast toast = Toast.makeText(this, Globals.NETWORK_OFFLINE,
+						Toast.LENGTH_SHORT);
+				toast.show();
+			}
+
 		}
-		
+
 	}
 
 	@Override
@@ -116,17 +130,15 @@ public class Sozial extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
-	
+
 	private class DownloadFilesTask extends AsyncTask<String, Integer, String> {
 
 		@Override
-	    protected void onPreExecute() {
-	        super.onPreExecute();
-	        mProgressDialog.show();
-	    }
+		protected void onPreExecute() {
+			super.onPreExecute();
+			mProgressDialog.show();
+		}
 
-	   
-	
 		protected String doInBackground(String... sUrl) {
 			try {
 
@@ -139,44 +151,58 @@ public class Sozial extends Activity {
 				int fileLength = conn.getContentLength();
 
 				InputStream bis = new BufferedInputStream(url.openStream());
-				OutputStream fos = new FileOutputStream(Globals.vl_Path + FileName);
+				OutputStream fos = new FileOutputStream(Globals.vl_Path
+						+ FileName);
 				/*
 				 * Read bytes to the Buffer until there is nothing more to
 				 * read(-1).
 				 */
-	            byte data[] = new byte[1024];
-	            long total = 0;
-	            int count;
-	            while ((count = bis.read(data)) != -1) {
-	                total += count;
-	                // publishing the progress....
-	                publishProgress((int) (total * 100 / fileLength));
-	                fos.write(data, 0, count);
-	            }
-	            fos.flush();
+				byte data[] = new byte[1024];
+				long total = 0;
+				int count;
+				while ((count = bis.read(data)) != -1) {
+					total += count;
+					// publishing the progress....
+					publishProgress((int) (total * 100 / fileLength));
+					fos.write(data, 0, count);
+				}
+				fos.flush();
 				fos.close();
 				bis.close();
 
-
-				
 			} catch (Exception e) {
 			}
 			return null;
 		}
-		 @Override
-		    protected void onProgressUpdate(Integer... progress) {
-		        super.onProgressUpdate(progress);
-		        mProgressDialog.setProgress(progress[0]);
-		        
-		    }
-		 @Override
-			protected void onPostExecute(String unused) {
-			 mProgressDialog.dismiss();			
-			 fileIndex++;
-			 downloadFiles();
-			}
-		 
+
+		@Override
+		protected void onProgressUpdate(Integer... progress) {
+			super.onProgressUpdate(progress);
+			mProgressDialog.setProgress(progress[0]);
+
+		}
+
+		@Override
+		protected void onPostExecute(String unused) {
+			mProgressDialog.dismiss();
+			fileIndex++;
+			downloadFiles();
+		}
+
 	}
-	
+
+	/**
+	 * Methode um Online-Verfuegbarkeit zu testen
+	 * 
+	 * @return Online Offline
+	 */
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
+	}
 
 }

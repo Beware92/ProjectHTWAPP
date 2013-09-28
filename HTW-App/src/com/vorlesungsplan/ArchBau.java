@@ -9,7 +9,10 @@ import java.net.URLConnection;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.htw_app.R;
 
@@ -46,7 +50,7 @@ public class ArchBau extends Activity {
 		mProgressDialog.setIndeterminate(false);
 		mProgressDialog.setMax(100);
 		mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		
+
 		downloadFiles();
 
 		ListView listView = (ListView) findViewById(R.id.listView1);
@@ -81,59 +85,74 @@ public class ArchBau extends Activity {
 	private void downloadFiles() {
 		Log.d("INFO", "downloadFiles()");
 		if (filesLoaded == false) {
-			DownloadFilesTask download = new DownloadFilesTask();
 
-			switch (fileIndex) {
+			if (isOnline()) {
+				try {
+					DownloadFilesTask download = new DownloadFilesTask();
 
-			case 0: {
-				if (!(Globals.ARCHB.exists())) {
-					// Architektur Bachelor
-					download.execute(Globals.ARCHB_URL);
-					Log.d("DOWNLOAD", Globals.ARCHB_URL);
-				} else {
-					fileIndex++;
-					downloadFiles();
-				}
-				break;
-			}
-			case 1: {
-				if (!(Globals.ARCHM.exists())) {
-					// Architektur Master
-					download.execute(Globals.ARCHM_URL);
-					Log.d("DOWNLOAD", Globals.ARCHM_URL);
-				} else {
-					fileIndex++;
-					downloadFiles();
-				}
-				break;
-			}
-			case 2: {
-				if (!(Globals.BAUB.exists())) {
-					// Bauingenieur Bachelor
-					download.execute(Globals.BAUB_URL);
-					Log.d("DOWNLOAD", Globals.BAUB_URL);
-				} else {
-					fileIndex++;
-					downloadFiles();
-				}
-				break;
-			}
-			case 3: {
+					switch (fileIndex) {
 
-				if (!(Globals.BAUM.exists())) {
-					// Bauingenieur Master
-					download.execute(Globals.BAUM_URL);
-					Log.d("DOWNLOAD", Globals.BAUM_URL);
-				} else {
-					fileIndex++;
-					downloadFiles();
+					case 0: {
+						if (!(Globals.ARCHB.exists())) {
+							// Architektur Bachelor
+							download.execute(Globals.ARCHB_URL);
+							Log.d("DOWNLOAD", Globals.ARCHB_URL);
+						} else {
+							fileIndex++;
+							downloadFiles();
+						}
+						break;
+					}
+					case 1: {
+						if (!(Globals.ARCHM.exists())) {
+							// Architektur Master
+							download.execute(Globals.ARCHM_URL);
+							Log.d("DOWNLOAD", Globals.ARCHM_URL);
+						} else {
+							fileIndex++;
+							downloadFiles();
+						}
+						break;
+					}
+					case 2: {
+						if (!(Globals.BAUB.exists())) {
+							// Bauingenieur Bachelor
+							download.execute(Globals.BAUB_URL);
+							Log.d("DOWNLOAD", Globals.BAUB_URL);
+						} else {
+							fileIndex++;
+							downloadFiles();
+						}
+						break;
+					}
+					case 3: {
+
+						if (!(Globals.BAUM.exists())) {
+							// Bauingenieur Master
+							download.execute(Globals.BAUM_URL);
+							Log.d("DOWNLOAD", Globals.BAUM_URL);
+						} else {
+							fileIndex++;
+							downloadFiles();
+						}
+						break;
+					}
+					case 5: {
+						filesLoaded = true;
+					}
+					}
+				} catch (Exception e) {
+					Toast toast = Toast.makeText(this, Globals.NETWORK_ABORT,
+							Toast.LENGTH_SHORT);
+					toast.show();
 				}
-				break;
+
+			} else {
+				Toast toast = Toast.makeText(this, Globals.NETWORK_OFFLINE,
+						Toast.LENGTH_SHORT);
+				toast.show();
 			}
-			case 5: {
-				filesLoaded = true;
-			}
-			}
+
 		}
 
 	}
@@ -203,6 +222,20 @@ public class ArchBau extends Activity {
 			downloadFiles();
 		}
 
+	}
+
+	/**
+	 * Methode um Online-Verfuegbarkeit zu testen
+	 * 
+	 * @return Online Offline
+	 */
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+			return true;
+		}
+		return false;
 	}
 
 }
