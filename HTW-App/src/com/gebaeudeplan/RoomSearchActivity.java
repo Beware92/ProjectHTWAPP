@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.IInterface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -32,10 +35,7 @@ import android.widget.ToggleButton;
 import com.example.htw_app.R;
 
 public class RoomSearchActivity extends Activity implements View.OnClickListener, DialogInterface.OnClickListener, OnItemClickListener {
-	
-	//private ArrayList results = new ArrayList<SearchResultElement>();
-
-    
+	    
     private int rowIdName;
     private int rowIdPreName;
     private int rowIdTel;
@@ -45,7 +45,7 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
     private int rowId;
     
     private PopupWindow popUpWindow;
-    private Button searchButton;
+    private ImageButton searchButton;
     private EditText searchText;
     private ListView listView;
     private List<SearchResultElement> resultList;
@@ -57,11 +57,11 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchroom);
 
-         
-        searchButton = (Button) findViewById(R.id.roomSearchButton);
+        searchButton = (ImageButton) findViewById(R.id.roomSearchButton);
         searchButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -72,20 +72,15 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		});
 
         searchText = (EditText) findViewById(R.id.searchText);
-        listView = (ListView) findViewById(R.id.roomList);
-
-        
-        
-        
-
-         
-         
+        listView = (ListView) findViewById(R.id.roomList);      
     }
     
 
-    
     private void search() {
     	try {
+    		
+    		
+    		
     		resultList = new ArrayList<SearchResultElement>();
     		
 			DatabaseHelper dbHelper;
@@ -97,6 +92,10 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 			
 			String[] searchString = searchText.getText().toString().split("\\s+");
 			
+			
+			Log.i("Cursor", ""+result.getCount());
+
+				
 			if (result.moveToFirst()) {
 				rowIdName = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_NAME);
 				rowIdPreName = result.getColumnIndex(DatabaseHelper.TABLE_FIELD_PRENAME);
@@ -135,12 +134,26 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 				}
 
 			} while (result.moveToNext()); //FIXME DB schliessen
-			db.close();
-			result.close();
 			
-			SearchResultAdapter adapter = new SearchResultAdapter(this, R.id.roomList, resultList);
-			listView.setAdapter(adapter);
-			listView.setOnItemClickListener(this);
+			if (resultList.size() == 0) {
+				resultList.add(new SearchResultElement("Keine Einträge gefunden","","","","","",0));db.close();
+				result.close();
+				
+				SearchResultAdapter adapter = new SearchResultAdapter(this, R.id.roomList, resultList);
+				listView.setAdapter(adapter);
+			} else {
+				db.close();
+				result.close();
+				
+				SearchResultAdapter adapter = new SearchResultAdapter(this, R.id.roomList, resultList);
+				listView.setAdapter(adapter);
+				listView.setOnItemClickListener(this);
+				
+				InputMethodManager mgr = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				mgr.hideSoftInputFromWindow(searchText.getWindowToken(), 0);
+			}
+			
+
 			
         } catch (Exception e) {
 			e.printStackTrace();
@@ -169,22 +182,19 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		
 		String info = "";
 		String headLine = title + " " + prename + " " + name;
-		Boolean mailExisting = false;
-		Boolean phoneExisting = false;
+
 		
 
 		
-		if (room != "") {
-			info = info + "Raum: " + room + "\n";
+		if (room.length() > 1) {
+			info = info + "Raum: " + room + "\n\n";
 		}
-		if (tel != "") {
-			info = info + "Tel.:\n" + vorwahl + tel + "\n";
-			phoneExisting = true;
+		if (tel.length() > 2) {
+			info = info + "Tel.: " + vorwahl + tel + "\n\n";
 			
 		}
-		if (mail != "") {
+		if (mail.length() > 5) {
 			info = info + "E-Mail:\n" + mail + "\n";
-			mailExisting = true;
 		}
 			
 	
@@ -193,8 +203,8 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		
 		detailBundle.putString("title", headLine);
 		detailBundle.putString("content", info);
-		detailBundle.putBoolean("phoneExisting", phoneExisting);
-		detailBundle.putBoolean("mailExisting", mailExisting);
+		detailBundle.putString("phone", vorwahl + tel);
+		detailBundle.putString("mail", mail);
 		
 		detailIntent.putExtras(detailBundle);
 		startActivity(detailIntent);
@@ -223,7 +233,8 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		// TODO Auto-generated method stub
 		
 	}
-    
+	
+
 
     
 }

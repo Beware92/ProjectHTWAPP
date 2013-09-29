@@ -2,7 +2,6 @@ package com.example.htw_app;
 
 import com.example.htw_app.mensaplan.*;
 import com.gebaeudeplan.GebaeudeplanActivity;
-import com.gebaeudeplan.LoadScreenGebaeudeplan;
 import com.htw_app.notenauskunft.Notenauskunft;
 import com.vorlesungsplan.StundenPlanActivity;
 
@@ -54,7 +53,7 @@ public class MainActivity extends Activity {
 		buttonGebaeudeplan.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				// GebaeudeplanActivity öffnen
-				Intent intentGebaeudeplan = new Intent(MainActivity.this, LoadScreenGebaeudeplan.class);
+				Intent intentGebaeudeplan = new Intent(MainActivity.this, GebaeudeplanActivity.class);
 				startActivity(intentGebaeudeplan);
 			}
 		});

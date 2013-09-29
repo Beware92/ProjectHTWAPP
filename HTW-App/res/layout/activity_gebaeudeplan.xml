@@ -1,72 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <com.gebaeudeplan.TouchImageView
         android:id="@+id/touchImageViewOut"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+        android:layout_weight="50" />
 
-    <TextView
-        android:id="@+id/textViewCurrentFloor"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/ImageButtonFloorUp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:text="E" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@color/meta_gray"
+        android:orientation="horizontal" >
 
-    <ImageButton
-        android:id="@+id/ImageButtonFloorDown"
-        style="@style/AppTheme"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/arrowdown" />
+        <ImageButton
+            android:id="@+id/ImageButtonFloorDown"
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/arrowdown" />
 
-    <ImageButton
-        android:id="@+id/ImageButtonFloorUp"
-        style="@style/AppTheme"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/ImageButtonFloorDown"
-        android:background="@drawable/arrowup" />
+        <TextView
+            android:id="@+id/textViewCurrentFloor"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="E"
+            android:textColor="@color/red_htwlogo"
+            android:textSize="30sp" />
 
-    <ToggleButton
-        android:id="@+id/toggleButtonRoomDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/ImageButtonFloorUp"
-        android:checked="false"
-        android:text="ToggleButton" />
+        <ImageButton
+            android:id="@+id/ImageButtonFloorUp"
+            style="@style/AppTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:background="@drawable/arrowup" />
 
-    <TextView
-        android:id="@+id/textViewRoomDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleButtonRoomDesc"
-        android:layout_alignBottom="@+id/toggleButtonRoomDesc"
-        android:layout_toLeftOf="@+id/toggleButtonRoomDesc"
-        android:text="Raumnummern:" />
+        <ToggleButton
+            android:id="@+id/toggleButtonRoomDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:checked="false"
+            android:text="ToggleButton"
+            android:textOff="@string/togglebutton_roomsoff"
+            android:textOn="@string/togglebutton_roomson"
+            android:textSize="20sp" />
 
-    <ImageButton
-        android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/textViewRoomDesc"
-        android:src="@android:drawable/ic_menu_search" />
+        <ImageButton
+            android:id="@+id/buttonSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:src="@android:drawable/ic_menu_search" />
 
-</RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

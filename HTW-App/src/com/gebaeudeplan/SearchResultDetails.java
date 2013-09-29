@@ -5,6 +5,7 @@ import com.example.htw_app.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,34 +24,44 @@ public class SearchResultDetails extends Activity {
         
         title.setText(detailBundle.getCharSequence("title"));
         content.setText(detailBundle.getCharSequence("content"));
-        boolean phoneExisting = detailBundle.getBoolean("phoneExisting");
-        boolean mailExisting = detailBundle.getBoolean("mailExisting");
+        final String phone = detailBundle.getCharSequence("phone").toString();
+        final String mail = detailBundle.getCharSequence("mail").toString();
+        
         
         ImageButton buttonPhone = (ImageButton) this.findViewById(R.id.imageButtonPopUpPhone);
         ImageButton buttonMail = (ImageButton) this.findViewById(R.id.imageButtonPopUpMail);
     	buttonPhone.setEnabled(false);
     	buttonMail.setEnabled(false);
         
-        if (phoneExisting) {
+        if (phone.length() > 1) {
         	buttonPhone.setEnabled(true);
+        	
         }
-        if (mailExisting) {
+        if (mail.length() > 4) {
         	buttonMail.setEnabled(true);
         }
         
         buttonPhone.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				// GebaeudeplanActivity öffnen
-				//Intent intentGebaeudeplan = new Intent(MainActivity.this, LoadScreenGebaeudeplan.class);
-				//startActivity(intentGebaeudeplan);
+	            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+phone));
+	            startActivity(phoneIntent);
+	            
+	            
+
 			}
 		});
         
         buttonMail.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				// GebaeudeplanActivity öffnen
-				//Intent intentGebaeudeplan = new Intent(MainActivity.this, LoadScreenGebaeudeplan.class);
-				//startActivity(intentGebaeudeplan);
+	            Intent mailIntent = new Intent(Intent.ACTION_SEND);
+	            mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { mail });
+
+	 
+	            // need this to prompts email client only
+	            mailIntent.setType("message/rfc822");
+	 
+	            startActivity(Intent.createChooser(mailIntent, "E-Mail Client"));
+	 
 			}
 		});
         

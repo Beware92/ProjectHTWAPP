@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -11,40 +9,42 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="@color/red_htwlogo"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/textViewPopUpContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_below="@+id/textViewPopUpTitle"
-        android:layout_marginTop="14dp"
-        android:layout_toRightOf="@+id/textViewPopUpTitle"
-        android:text="TextView" />
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="34dp"
+        android:text="TextView"
+        android:textColor="@color/meta_gray"
+        android:textSize="18sp" />
 
-    <ImageButton
-        android:id="@+id/imageButtonPopUpPhone"
+    <LinearLayout
+        android:id="@+id/LinearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/imageButtonPopUpCancel"
-        android:layout_marginRight="57dp"
-        android:src="@android:drawable/stat_sys_phone_call" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/textViewPopUpContent"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/imageButtonPopUpMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageButtonPopUpPhone"
-        android:layout_below="@+id/imageButtonPopUpPhone"
-        android:src="@android:drawable/ic_dialog_email" />
+        <ImageButton
+            android:id="@+id/imageButtonPopUpPhone"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:src="@android:drawable/stat_sys_phone_call" />
 
-    <ImageButton
-        android:id="@+id/imageButtonPopUpCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageButtonPopUpPhone"
-        android:layout_centerVertical="true"
-        android:src="@android:drawable/btn_dialog" />
+        <ImageButton
+            android:id="@+id/imageButtonPopUpMail"
+            android:layout_width="wrap_content"
+            android:layout_height="54dp"
+            android:src="@android:drawable/ic_dialog_email" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -20,6 +20,7 @@ public class SearchResultElement {
 		this.tel = tel;
 	}
 	
+	
 	public String getName() {
 		return name;
 	}

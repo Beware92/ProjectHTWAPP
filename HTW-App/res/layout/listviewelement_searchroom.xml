@@ -10,39 +10,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Title" />
-
-    <TextView
-        android:id="@+id/textViewPreName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textViewTitle"
-        android:text="TextView" />
+        android:text="Title"
+        android:textColor="@color/meta_gray" />
 
     <TextView
         android:id="@+id/textViewName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textViewTel"
-        android:layout_toRightOf="@+id/textViewPreName"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/textViewTel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textViewPreName"
-        android:text="Tel" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_x="24dp"
+        android:layout_y="21dp"
+        android:text="TextView"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textViewRoomNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textViewTel"
-        android:layout_alignBottom="@+id/textViewTel"
         android:layout_alignParentRight="true"
-        android:text="Room" />
+        android:layout_below="@+id/textViewName"
+        android:layout_marginRight="10dp"
+        android:text="Room"
+        android:textColor="@color/red_htwlogo"
+        android:textSize="16sp" />
 
 </RelativeLayout>

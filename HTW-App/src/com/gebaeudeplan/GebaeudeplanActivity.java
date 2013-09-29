@@ -1,14 +1,15 @@
 package com.gebaeudeplan;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -20,8 +21,6 @@ import com.larvalabs.svgandroid.SVGParser;
 
 public class GebaeudeplanActivity extends Activity {
 
-	
-	
 	private TouchImageView touchImageView;
 	private boolean showRoomDesc;
 	private HtwMapApplication htwMap;
@@ -32,26 +31,23 @@ public class GebaeudeplanActivity extends Activity {
 	private TextView tvCurrentFloor;
 	private ImageButton buttonSearch;
 	
+	private ProgressDialog pDialog;
+	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
 
     	super.onCreate(savedInstanceState);
+    	new LoadAllProducts().execute();
     	
-    	htwMap = new HtwMapApplication();
-    	//htwMap = (HtwMapApplication)getIntent().getParcelableExtra("Map");
+
     	setContentView(R.layout.activity_gebaeudeplan);
     	
     	showRoomDesc = false;
     	currentFloor = 0;
     	
 
-    	initializeMaps();
     	touchImageView = ((TouchImageView)findViewById(R.id.touchImageViewOut)); 
     	tvCurrentFloor = ((TextView)findViewById(R.id.textViewCurrentFloor));
-    	
-    	
-
-    	setMapToE();
 
     	
     	
@@ -94,11 +90,6 @@ public class GebaeudeplanActivity extends Activity {
 				startSearch();
 			}
 		});
-    	
-
-    	
-    	
-
 	}
 	
 	private void setMapToE() {
@@ -136,30 +127,7 @@ public class GebaeudeplanActivity extends Activity {
 		}
 		
 	}
-	
-	private void initializeMaps() {
-		//Erdgeschoss - 0
-	    PictureDrawable floorE = SVGParser.getSVGFromResource(getResources(), R.raw.e).createPictureDrawable();
-	    htwMap.setMapFloorE(floorE);
-		PictureDrawable floorENoText = SVGParser.getSVGFromResource(getResources(), R.raw.eno).createPictureDrawable();
-		htwMap.setMapFloorEnoDesc(floorENoText);
-		//Erste Etage - 1
-		PictureDrawable floorOne = SVGParser.getSVGFromResource(getResources(), R.raw.one).createPictureDrawable();
-		htwMap.setMapFloor1(floorOne);
-		PictureDrawable floorOneNoText = SVGParser.getSVGFromResource(getResources(), R.raw.oneno).createPictureDrawable();
-		htwMap.setMapFloor1noDesc(floorOneNoText);
-		//Erste Etage - 2
-		PictureDrawable floorTwo = SVGParser.getSVGFromResource(getResources(), R.raw.two).createPictureDrawable();
-		htwMap.setMapFloor2(floorTwo);
-		PictureDrawable floorTwoNoText = SVGParser.getSVGFromResource(getResources(), R.raw.twono).createPictureDrawable();
-		htwMap.setMapFloor2noDesc(floorTwoNoText);
-		//Erste Etage - 3
-		PictureDrawable floorTree = SVGParser.getSVGFromResource(getResources(), R.raw.tree).createPictureDrawable();
-		htwMap.setMapFloor3(floorTree);
-		PictureDrawable floorTreeNoText = SVGParser.getSVGFromResource(getResources(), R.raw.treeno).createPictureDrawable();
-		htwMap.setMapFloor3noDesc(floorTreeNoText);
-		
-	}
+
 	
 	private void displayMap(Drawable mapToDisplay) {
 		this.touchImageView.setImageDrawable(mapToDisplay);
@@ -178,11 +146,9 @@ public class GebaeudeplanActivity extends Activity {
 		}
 	}
 	
-	public void toggleButtonRoomDescClick() { //Uebergabeparameter ueberpruefen
-		Log.i("**", "buttonToggleClick");
+	public void toggleButtonRoomDescClick() {
 		showRoomDesc = !showRoomDesc;
 		updateMapDrawable();
-		
 	}
 	
 	private void floorUp() {
@@ -229,6 +195,50 @@ public class GebaeudeplanActivity extends Activity {
 	}
 	
 	
+	
+	class LoadAllProducts extends AsyncTask<String, String, String> {
+
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			pDialog = new ProgressDialog(GebaeudeplanActivity.this);
+			pDialog.setMessage("Loading data. Please wait...");
+			pDialog.setIndeterminate(false);
+			pDialog.setCancelable(false);
+			pDialog.show();
+		}
+
+		protected String doInBackground(String... args) {
+			htwMap = new HtwMapApplication();
+			//Erdgeschoss - 0
+		    PictureDrawable floorE = SVGParser.getSVGFromResource(getResources(), R.raw.e).createPictureDrawable();
+		    htwMap.setMapFloorE(floorE);
+			PictureDrawable floorENoText = SVGParser.getSVGFromResource(getResources(), R.raw.eno).createPictureDrawable();
+			htwMap.setMapFloorEnoDesc(floorENoText);
+			//Etage - 1
+			PictureDrawable floorOne = SVGParser.getSVGFromResource(getResources(), R.raw.one).createPictureDrawable();
+			htwMap.setMapFloor1(floorOne);
+			PictureDrawable floorOneNoText = SVGParser.getSVGFromResource(getResources(), R.raw.oneno).createPictureDrawable();
+			htwMap.setMapFloor1noDesc(floorOneNoText);
+			//Etage - 2
+			PictureDrawable floorTwo = SVGParser.getSVGFromResource(getResources(), R.raw.two).createPictureDrawable();
+			htwMap.setMapFloor2(floorTwo);
+			PictureDrawable floorTwoNoText = SVGParser.getSVGFromResource(getResources(), R.raw.twono).createPictureDrawable();
+			htwMap.setMapFloor2noDesc(floorTwoNoText);
+			//Etage - 3
+			PictureDrawable floorTree = SVGParser.getSVGFromResource(getResources(), R.raw.tree).createPictureDrawable();
+			htwMap.setMapFloor3(floorTree);
+			PictureDrawable floorTreeNoText = SVGParser.getSVGFromResource(getResources(), R.raw.treeno).createPictureDrawable();
+			htwMap.setMapFloor3noDesc(floorTreeNoText);
+			return null;
+		}
+
+		protected void onPostExecute(String file_url) {
+			pDialog.dismiss();
+			setMapToE();
+		}
+	}
 	
 	
 

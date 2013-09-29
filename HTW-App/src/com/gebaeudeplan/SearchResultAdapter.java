@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResultElement>   {
 
     private class ViewHolder {
         TextView nameView;
-        TextView preNameView;
-        TextView telView;
+
         TextView roomView;
         TextView titleView;
        
@@ -42,9 +42,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResultElement>   {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.listviewelement_searchroom, null);
             holder = new ViewHolder();
+            
             holder.nameView = (TextView) convertView.findViewById(R.id.textViewName);
-            holder.preNameView = (TextView) convertView.findViewById(R.id.textViewPreName);
-            holder.telView = (TextView) convertView.findViewById(R.id.textViewTel);
             holder.roomView = (TextView) convertView.findViewById(R.id.textViewRoomNumber);
             holder.titleView = (TextView) convertView.findViewById(R.id.textViewTitle);
             
@@ -54,16 +53,12 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResultElement>   {
             holder = (ViewHolder) convertView.getTag();
         }
  
-        holder.nameView.setText(item.getName());
-        holder.preNameView.setText(item.getPrename());
-        holder.telView.setText(item.getTel());
+        holder.nameView.setText(item.getName() + " " + item.getPrename());
+        Log.i("asdf", item.getName() + " " + item.getPrename() + " " + item.getRoom());
         
         holder.roomView.setText(item.getRoom());
         holder.titleView.setText(item.getTitle());
-        
-        //holder.reporterNameView.setText("By, " + listData.get(position).getReporterName());
-        //holder.reportedDateView.setText(listData.get(position).getDate());
- 
+
         return convertView;
     }
     
