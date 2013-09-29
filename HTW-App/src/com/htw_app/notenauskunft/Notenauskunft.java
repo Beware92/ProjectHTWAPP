@@ -2,14 +2,11 @@ package com.htw_app.notenauskunft;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.example.htw_app.R;
 import com.htw_app.notenauskunft.DatabaseHelper;
-
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -43,6 +40,8 @@ public class Notenauskunft extends Activity {
 	private static final String TAG_MTKNR = "mtknr";
 	private static final String TAG_PASSWORT = "passwort";
 
+	public boolean status;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +49,17 @@ public class Notenauskunft extends Activity {
 		setContentView(R.layout.activity_notenauskunft);
 
 		mDbHelper = new DatabaseHelper(this);
+		status = false;
+
+		SQLiteDatabase db = Notenauskunft.mDbHelper.getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+		values.put(DatabaseHelper.BENUTZER_FIELD_STATUS, "logout");
+
+		db.update(DatabaseHelper.TABLE_BENUTZER, values,
+				DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'", null);
+		db.close();
+
 		refreshAdapter = new ArrayList<User>();
 
 		final Button buttonLogin = (Button) this.findViewById(R.id.buttonLogin);
@@ -113,6 +123,16 @@ public class Notenauskunft extends Activity {
 				db.close();
 			}
 		});
+	}
+
+	public void makeToast() {
+		if (status) {
+			Toast.makeText(this, "Anmeldung erfolgreich!", Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			Toast.makeText(this, "Anmeldung fehlgeschlagen!",
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	public boolean isOnline() {
@@ -180,7 +200,9 @@ public class Notenauskunft extends Activity {
 									DatabaseHelper.BENUTZER_FIELD_ID + "= '"
 											+ 1 + "'", null);
 							db.close();
-							// Log.d("HTW-App", "DatabaseHelper: " + login);
+							status = true;
+							Log.d("HTW-App", "DatabaseHelper: ");
+
 						} else {
 							SQLiteDatabase db = Notenauskunft.mDbHelper
 									.getWritableDatabase();
@@ -193,6 +215,7 @@ public class Notenauskunft extends Activity {
 									DatabaseHelper.BENUTZER_FIELD_ID + "= '"
 											+ 1 + "'", null);
 							db.close();
+							status = false;
 						}
 					} else {
 						SQLiteDatabase db = Notenauskunft.mDbHelper
@@ -206,6 +229,7 @@ public class Notenauskunft extends Activity {
 								DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1
 										+ "'", null);
 						db.close();
+						status = false;
 					}
 				}
 			} catch (Exception e) {
@@ -217,6 +241,7 @@ public class Notenauskunft extends Activity {
 
 		protected void onPostExecute(String file_url) {
 			pDialog.dismiss();
+			makeToast();
 		}
 	}
 }
