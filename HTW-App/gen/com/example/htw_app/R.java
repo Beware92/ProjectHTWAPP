@@ -11,6 +11,7 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int light_grey=0x7f050002;
         public static final int meta_gray=0x7f050000;
         public static final int red_htwlogo=0x7f050001;
     }
@@ -151,21 +152,20 @@ public final class R {
         public static final int activity_about=0x7f030000;
         public static final int activity_anzeigen=0x7f030001;
         public static final int activity_gebaeudeplan=0x7f030002;
-        public static final int activity_loadgebaeudeplan=0x7f030003;
-        public static final int activity_main=0x7f030004;
-        public static final int activity_mensa=0x7f030005;
-        public static final int activity_notenauskunft=0x7f030006;
-        public static final int activity_rssmain=0x7f030007;
-        public static final int activity_searchroom=0x7f030008;
-        public static final int activity_searchroomdetails=0x7f030009;
-        public static final int activity_settings=0x7f03000a;
-        public static final int activity_stundenplan=0x7f03000b;
-        public static final int activity_vorlesungsplan=0x7f03000c;
-        public static final int activity_webview=0x7f03000d;
-        public static final int dialog_pagenumber=0x7f03000e;
-        public static final int listviewelement_searchroom=0x7f03000f;
-        public static final int pdf_file_password=0x7f030010;
-        public static final int stundenplan=0x7f030011;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_mensa=0x7f030004;
+        public static final int activity_notenauskunft=0x7f030005;
+        public static final int activity_rssmain=0x7f030006;
+        public static final int activity_searchroom=0x7f030007;
+        public static final int activity_searchroomdetails=0x7f030008;
+        public static final int activity_settings=0x7f030009;
+        public static final int activity_stundenplan=0x7f03000a;
+        public static final int activity_vorlesungsplan=0x7f03000b;
+        public static final int activity_webview=0x7f03000c;
+        public static final int dialog_pagenumber=0x7f03000d;
+        public static final int listviewelement_searchroom=0x7f03000e;
+        public static final int pdf_file_password=0x7f03000f;
+        public static final int stundenplan=0x7f030010;
     }
     public static final class menu {
         public static final int action_bar=0x7f090000;

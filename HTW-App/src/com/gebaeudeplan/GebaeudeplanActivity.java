@@ -18,7 +18,14 @@ import com.example.htw_app.R;
 import com.larvalabs.svgandroid.SVGParser;
 
 
-
+/**
+ * Class to initialize, display and control the floorplan
+ * 
+ * This version only supports the "Campus HTW, Alt Saarbruecken" map
+ * 
+ * @author Thomas Quitter
+ * @date 29.09.2013
+ */
 public class GebaeudeplanActivity extends Activity {
 
 	private TouchImageView touchImageView;
@@ -37,20 +44,20 @@ public class GebaeudeplanActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
     	super.onCreate(savedInstanceState);
+    	
+    	//Start the ASyncTask to load the mapfiles
     	new LoadAllProducts().execute();
     	
-
     	setContentView(R.layout.activity_gebaeudeplan);
     	
     	showRoomDesc = false;
     	currentFloor = 0;
     	
-
     	touchImageView = ((TouchImageView)findViewById(R.id.touchImageViewOut)); 
     	tvCurrentFloor = ((TextView)findViewById(R.id.textViewCurrentFloor));
 
     	
-    	
+    	//OnClickListener for showRoomDescription togglebutton
     	toggleButtonShowRoomDesc = (ToggleButton) findViewById(R.id.toggleButtonRoomDesc);
     	toggleButtonShowRoomDesc.setOnClickListener(new OnClickListener() {
 			
@@ -61,6 +68,7 @@ public class GebaeudeplanActivity extends Activity {
 			}
 		});
     	
+    	//OnClickListener for floorDown button
     	buttonFloorDown = (ImageButton) findViewById(R.id.ImageButtonFloorDown);
     	buttonFloorDown.setOnClickListener(new OnClickListener() {
 			
@@ -71,6 +79,7 @@ public class GebaeudeplanActivity extends Activity {
 			}
 		});
     
+    	//OnClickListener for floorUp button
     	buttonFloorUp = (ImageButton) findViewById(R.id.ImageButtonFloorUp);
     	buttonFloorUp.setOnClickListener(new OnClickListener() {
 			
@@ -81,6 +90,7 @@ public class GebaeudeplanActivity extends Activity {
 			}
 		});
     	
+    	//OnClickListener for searchbutton
     	buttonSearch = (ImageButton) findViewById(R.id.buttonSearch);
     	buttonSearch.setOnClickListener(new OnClickListener() {
 			
@@ -92,12 +102,18 @@ public class GebaeudeplanActivity extends Activity {
 		});
 	}
 	
+	/*
+	 * Initialize map to floorE 
+	 */
 	private void setMapToE() {
-		this.touchImageView.setImageDrawable(htwMap.getMapFloorEnoDesc());
+		displayMap(htwMap.getMapFloorEnoDesc());
 		displayCurrentFloorNumber();
 		
 	}
 
+	/*
+	 * Changes the map(floor)
+	 */
 	private void updateMapDrawable() {
 		Log.i("**", "update " + showRoomDesc + " " + currentFloor);
 		if (showRoomDesc) {
@@ -125,14 +141,19 @@ public class GebaeudeplanActivity extends Activity {
 						break;
 			}
 		}
-		
 	}
 
-	
+	/*
+	 * Display passed map and set background color
+	 */
 	private void displayMap(Drawable mapToDisplay) {
 		this.touchImageView.setImageDrawable(mapToDisplay);
+		this.touchImageView.setBackgroundColor(getResources().getColor(R.color.light_grey));
 	}
 	
+	/*
+	 * Set the label for the floornumber
+	 */
 	private void displayCurrentFloorNumber() {
 		switch (currentFloor) {
 			case 0: tvCurrentFloor.setText("E");
@@ -146,11 +167,17 @@ public class GebaeudeplanActivity extends Activity {
 		}
 	}
 	
+	/*
+	 * Handles the clickevent of the togglebutton to display roomdetails
+	 */
 	public void toggleButtonRoomDescClick() {
 		showRoomDesc = !showRoomDesc;
 		updateMapDrawable();
 	}
 	
+	/*
+	 * Go one floor up
+	 */
 	private void floorUp() {
 
 		if (currentFloor < 3) {
@@ -161,6 +188,9 @@ public class GebaeudeplanActivity extends Activity {
 		}
 	}
 	
+	/*
+	 * Go one floor down
+	 */
 	private void floorDown() {
 
 		if (currentFloor > 0) {
@@ -171,6 +201,9 @@ public class GebaeudeplanActivity extends Activity {
 		}
 	}
 	
+	/*
+	 * Start the searchactivity
+	 */
 	public void startSearch() {
 		  
 		  Intent searchIntent = new Intent(GebaeudeplanActivity.this, RoomSearchActivity.class);
@@ -195,7 +228,9 @@ public class GebaeudeplanActivity extends Activity {
 	}
 	
 	
-	
+	/*
+	 * Inner class to load all mapfiles by an AsyncTask
+	 */
 	class LoadAllProducts extends AsyncTask<String, String, String> {
 
 
@@ -203,7 +238,7 @@ public class GebaeudeplanActivity extends Activity {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			pDialog = new ProgressDialog(GebaeudeplanActivity.this);
-			pDialog.setMessage("Loading data. Please wait...");
+			pDialog.setMessage("Karten werden geladen...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
 			pDialog.show();
@@ -239,8 +274,5 @@ public class GebaeudeplanActivity extends Activity {
 			setMapToE();
 		}
 	}
-	
-	
 
-	
 }
