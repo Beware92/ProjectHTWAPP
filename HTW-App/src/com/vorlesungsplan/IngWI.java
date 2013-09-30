@@ -51,17 +51,19 @@ public class IngWI extends Activity {
 	
 	
 
-	Studiengang[] items = { new Studiengang(1, "PI"), new Studiengang(2, "KI"),
-			new Studiengang(3, "Maschienenbau"),
-			new Studiengang(4, "Elektrotechnik"),
-			new Studiengang(5, "Biomedizinische Technik"),
-			new Studiengang(6, "Mechtronik Sensortechnik"),
-			new Studiengang(7, "Erneuerbare Energien/Energiesystemtechnik")};
+	Studiengang[] items;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		
+		items  = new Studiengang[]{ new Studiengang(1, "PI"), new Studiengang(2, "KI"),
+				new Studiengang(3, getString(R.string.studiengang_ms)),
+				new Studiengang(4, getString(R.string.studiengang_et)),
+				new Studiengang(5, getString(R.string.studiengang_bt)),
+				new Studiengang(6, getString(R.string.studiengang_mt)),
+				new Studiengang(7, getString(R.string.studiengang_ee))};
 
 		opener = new PlanOpener();
 		

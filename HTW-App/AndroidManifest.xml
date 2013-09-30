@@ -102,7 +102,8 @@
         </activity>
         <activity
             android:name="com.htw_app.notenauskunft.Notenauskunft"
-            android:label="@string/title_notenauskunft" >
+            android:label="@string/title_notenauskunft"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -111,7 +112,8 @@
         </activity>
         <activity
             android:name="com.htw_app.notenauskunft.NotenauskunftList"
-            android:label="@string/title_notenauskunft" >
+            android:label="@string/title_notenauskunft"
+			android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -120,7 +122,8 @@
         </activity>
         <activity
             android:name="com.vorlesungsplan.StundenPlanActivity"
-            android:label="@string/title_stundenplan" >
+            android:label="@string/title_stundenplan"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -145,39 +148,48 @@
         </activity>
         <activity 
             android:name="com.vorlesungsplan.IngWI" 
-            android:label="@string/title_activity_ing_wi"> 
+            android:label="@string/title_activity_ing_wi"
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.vorlesungsplan.ArchBau" 
-            android:label="@string/title_activity_arch_bau"> 
+            android:label="@string/title_activity_arch_bau"
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.vorlesungsplan.Sozial" 
-            android:label="@string/title_activity_sozial"> 
+            android:label="@string/title_activity_sozial"
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.vorlesungsplan.Wirtschaft" 
-            android:label="@string/title_activity_wirtschaft"> 
+            android:label="@string/title_activity_wirtschaft"
+            android:screenOrientation="portrait"> 
         </activity>
         <activity 
             android:name="com.vorlesungsplan.HTMLVIEW" 
-            android:label="@string/title_activity_webview"> 
+            android:label="@string/title_activity_webview"
+            android:screenOrientation="portrait"> 
         </activity>
         <activity 
             android:name="com.vorlesungsplan.BauAbschluss" 
-            android:label="@string/title_activity_bau_abschluss"> 
+            android:label="@string/title_activity_bau_abschluss"
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.vorlesungsplan.ArchAbschluss" 
-            android:label="@string/title_activity_arch_abschluss"> 
+            android:label="@string/title_activity_arch_abschluss"
+            android:screenOrientation="portrait"> 
         </activity>
         <activity 
             android:name="com.vorlesungsplan.ETAbschluss" 
-            android:label="@string/title_activity_etabschluss"> 
+            android:label="@string/title_activity_etabschluss"
+            android:screenOrientation="portrait">
         </activity>
         <activity 
             android:name="com.vorlesungsplan.PDFMethode" 
-            android:label="@string/title_activity_pdfmethode"> 
+            android:label="@string/title_activity_pdfmethode"
+            android:screenOrientation="portrait">
         </activity>
         
         <activity android:label="@string/title_gebaeudeplan" android:name="com.gebaeudeplan.RoomSearchActivity">

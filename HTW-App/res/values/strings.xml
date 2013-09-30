@@ -24,17 +24,17 @@
     <string name="title_rssMain">News</string>
     <string name="title_rssAnzeigen">Neuigkeit</string>
     <string name="settings_vorlesungsplan">Einstellungen</string>
-    <string name="title_activity_ing_wi">IngWI</string>
-    <string name="title_activity_arch_bau">ArchBau</string>
+    <string name="title_activity_ing_wi">Ingenieruswissenschaften</string>
+    <string name="title_activity_arch_bau">Architektur/Bau-Ingenieure</string>
     <string name="title_activity_sozial">Sozial</string>
     <string name="title_activity_wirtschaft">Wirtschaft</string>
-    <string name="title_activity_webview">WEBVIEW</string>
-    <string name="title_activity_bechlor_master">BechlorMaster</string>
-    <string name="title_activity_bachelor_master">BachelorMaster</string>
-    <string name="title_activity_bau_abschluss">BauAbschluss</string>
-    <string name="title_activity_arch_abschluss">ArchAbschluss</string>
-    <string name="title_activity_etabschluss">ETAbschluss</string>
-    <string name="title_activity_pdfmethode">PDFMethode</string>
+    <string name="title_activity_webview">Browser</string>
+    <string name="title_activity_bechlor_master">Bechlor/Master</string>
+    <string name="title_activity_bachelor_master">Bachelor/Master</string>
+    <string name="title_activity_bau_abschluss">Bau-Ingenieure</string>
+    <string name="title_activity_arch_abschluss">Architektur</string>
+    <string name="title_activity_etabschluss">Elektrotechnik</string>
+    <string name="title_activity_pdfmethode">PDF-Reader</string>
     <string name="title_roomSearchTitle">Details</string>
     
     <string name="menu_settings">XXXX</string>
@@ -48,6 +48,19 @@
     
     <string name="impressum_title">HTW-App Version 1.01 (Closed-Beta Version)</string>
     <string name="impressum_credits">Autoren:\nRezky Anugerah\nLukas Cangelosi\nMarc Meese\nCheng Li\nThomas Quitter</string>
+    <string name="studiengang_ms">Maschinenbau</string>
+    <string name="studiengang_ee">Erneuerbare Energien</string>
+    <string name="studiengang_bt">Biomedizinische Technik</string>
+    <string name="studiengang_mt">Mechatronik / Sensortechnik</string>
+    <string name="studiengang_et">Elektrotechnik</string>
+    <string name="studiengang_sapdk">Soziale Arbeit und Pädagogik der Kindheit</string>
+    <string name="studiengang_p">Pflege</string>
+    <string name="studiengang_pdk">Pädagogik der Kindheit</string>
+    <string name="studiengang_a">Architektur</string>
+    <string name="studiengang_bi">Bau-Ingenieure</string>
+    <string name="studiengang_master">Master</string>
+    <string name="studiengang_bachelor">Bachelor</string>
+    <string name="studiengang_mueipugs">Management und Expertise im Pflege- und Gesundheitssystem</string>
     
     
 </resources>

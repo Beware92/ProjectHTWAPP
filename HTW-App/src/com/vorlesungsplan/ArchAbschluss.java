@@ -31,13 +31,15 @@ public class ArchAbschluss extends Activity {
 		
 	PlanOpener opener;
 	
-	Abschluss[] items = { new Abschluss(1, "Bachelor"), 
-			new Abschluss(2, " Master"),
-			};
+	Abschluss[] items;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		
+		items = new Abschluss[] { new Abschluss(1, getString(R.string.studiengang_bachelor)), 
+				new Abschluss(2, getString(R.string.studiengang_master)),
+				};
 		
 		opener = new PlanOpener();		
 		

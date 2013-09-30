@@ -1,32 +1,29 @@
 package com.vorlesungsplan;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import com.example.htw_app.R;
-
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.example.htw_app.R;
 
 public class Sozial extends Activity {
 
@@ -37,17 +34,19 @@ public class Sozial extends Activity {
 
 	String FileName;
 
-	Studiengang[] items = {
-			new Studiengang(1,
-					"Management und Expertise im Pflege- und Gesundheitswesen"),
-			new Studiengang(2, "Soziale Arbeit und PŠdagogik der Kindheit"),
-			new Studiengang(3, "PŠdagogik der Kindheit"),
-			new Studiengang(4, "Pflege") };
+	Studiengang[] items;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		
+		items  = new Studiengang[]{
+				new Studiengang(1,
+						getString(R.string.studiengang_mueipugs)),
+				new Studiengang(2, getString(R.string.studiengang_sapdk)),
+				new Studiengang(3, getString(R.string.studiengang_pdk)),
+				new Studiengang(4, getString(R.string.studiengang_p)) };
 
 		fileIndex = 0;
 		opener = new PlanOpener();

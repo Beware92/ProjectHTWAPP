@@ -20,42 +20,42 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ETAbschluss extends Activity {
-	
+
 	PlanOpener opener;
 
-	
-	
-	Abschluss[] items = { new Abschluss(1, "Bachelor"), 
-			new Abschluss(2, " Master"),
-			};
+	Abschluss[] items;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		
+		items =  new Abschluss[] {
+				new Abschluss(1, getString(R.string.studiengang_bachelor)),
+				new Abschluss(2, getString(R.string.studiengang_master)), };
+		
 		opener = new PlanOpener();
-		
-		
+
 		ListView listView = (ListView) findViewById(R.id.listView1);
 		ArrayAdapter<Abschluss> adapter = new ArrayAdapter<Abschluss>(this,
 				android.R.layout.simple_list_item_1, items);
 
 		listView.setAdapter(adapter);
-		
-		
+
 		listView.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 
 				switch (position) {
 				case 0:
-					opener.openPDF(Globals.ETB,ETAbschluss.this);
+					opener.openPDF(Globals.ETB, ETAbschluss.this);
 					break;
 				case 1:
-					opener.openPDF(Globals.ETM,ETAbschluss.this);
+					opener.openPDF(Globals.ETM, ETAbschluss.this);
 					break;
 				}
 			}
-			
+
 		});
 	}
 

@@ -35,13 +35,15 @@ public class ArchBau extends Activity {
 	String FileName;
 	int fileIndex;
 
-	Studiengang[] items = { new Studiengang(1, "bauingenieur"),
-			new Studiengang(2, "architektur"), };
+	Studiengang[] items;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_vorlesungsplan);
+		
+		 items = new Studiengang[]{ new Studiengang(1, getString(R.string.studiengang_bi)),
+					new Studiengang(2, getString(R.string.studiengang_a)), };
 
 		fileIndex = 0;
 
