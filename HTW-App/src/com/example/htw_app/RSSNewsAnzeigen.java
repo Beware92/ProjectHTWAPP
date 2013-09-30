@@ -26,7 +26,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-
+/**
+ * Klasse zur Anzeige der RSS News
+ * @author marc.meese
+ *
+ */
 public class RSSNewsAnzeigen extends Activity {
 
 private final String TAG = RSSNewsAnzeigen.class.getSimpleName();
@@ -60,14 +64,14 @@ private static RSSContent myContent;
       //Start des Hintergrundprozess um den RSS Feed zu parsen
         new ReadRssFeedTask(this).execute();
 
-//wird ausgeführt wenn auf ein Item der Liste geklickt wird
+//wird ausgefuehrt wenn auf ein Item der Liste geklickt wird
 liste.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
 
 //Aufruf der Activity Anzeigen
 Intent intent = new Intent(RSSNewsAnzeigen.this,RSSFeedDetails.class);
-//Adresse des Inhalts des ausgewählten Feeds
+//Adresse des Inhalts des ausgewaehlten Feeds
 intent.putExtra("URL", myContent.getUrl(position));
 startActivity(intent);
 }
@@ -133,7 +137,7 @@ private HttpResponse response;
     
      try {
     
-     //ausführen der Anfrage
+     //ausfuehren der Anfrage
      response = client.execute(httpGet);
     
      } catch (ClientProtocolException e) {
@@ -142,7 +146,7 @@ private HttpResponse response;
      Log.e(TAG,"URL ist falsch, URL: "+URL_RSS + " " + e.getMessage());
      }
     
-     //Kontrolle ob bei ausführen der Anfrage ein Fehler aufgetreten ist
+     //Kontrolle ob bei ausfuehren der Anfrage ein Fehler aufgetreten ist
      if(response != null){
     
      //Status der Abfrage
@@ -217,7 +221,7 @@ private HttpResponse response;
                  dialog.dismiss();
              }
     
-     //liste mit Daten füllen
+     //liste mit Daten fuellen
      liste.setAdapter(new ArrayAdapter<String>(RSSNewsAnzeigen.this, android.R.layout.simple_list_item_1,myContent.getTitel()));
     
      }

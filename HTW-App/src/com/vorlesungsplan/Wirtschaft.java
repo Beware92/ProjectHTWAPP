@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
+/**
+ * Klasse zur Verwaltung von Wirtschaftsfakultaeten
+ * @author marc.meese
+ *
+ */
 public class Wirtschaft extends Activity {
 
 	@Override

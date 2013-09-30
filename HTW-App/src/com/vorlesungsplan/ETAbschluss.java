@@ -19,6 +19,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * Klasse zur Verwaltung des Studiengangs "Elektrotechnik"
+ * @author marc.meese
+ *
+ */
 public class ETAbschluss extends Activity {
 
 	PlanOpener opener;

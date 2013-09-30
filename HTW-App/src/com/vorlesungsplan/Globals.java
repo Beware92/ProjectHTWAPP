@@ -4,6 +4,11 @@ import java.io.File;
 
 import android.os.Environment;
 
+/**
+ * Klasse zur Verwaltung von Globalen Variablen
+ * @author marc.meese
+ *
+ */
 public class Globals {
 	
 	final static String vl_Path = Environment.getExternalStorageDirectory().toString()+ "/htw_app/vl_plaene/";

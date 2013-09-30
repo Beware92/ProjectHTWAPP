@@ -3,7 +3,11 @@ package com.example.htw_app;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Klasse zur Verwaltung von RSS Inhalten
+ * @author marc.meese
+ *
+ */
 public class RSSContent {
 
 	/**
@@ -35,7 +39,7 @@ public class RSSContent {
 	}
 
 	/**
-	 * fügt einen Nachricht aus dem RSS Feed der Klasse hinzu
+	 * fuegt einen Nachricht aus dem RSS Feed der Klasse hinzu
 	 * 
 	 * @param newsTitel
 	 *            - Nachricht aus RSS Feed

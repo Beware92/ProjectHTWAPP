@@ -15,6 +15,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * Klasse zur Verwaltung des Studiengangs "Bau-Ingenieur"
+ * @author marc.meese
+ *
+ */
 public class BauAbschluss extends Activity {
 	
 	PlanOpener opener;

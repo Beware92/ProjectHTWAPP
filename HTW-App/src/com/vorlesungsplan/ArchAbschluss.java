@@ -23,6 +23,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
+/**
+ * Klasse zur Verwaltung des Studiengangs "Architektur"
+ * @author marc.meese
+ *
+ */
 public class ArchAbschluss extends Activity {
 
 	ProgressDialog mProgressDialog;

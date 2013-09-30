@@ -6,7 +6,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import android.util.Log;
 
-
+/**
+ * Klasse zur Verwaltung von RSS-Attributen
+ * @author marc.meese
+ *
+ */
 public class RSSHandler extends DefaultHandler {
 
 	/**
@@ -106,7 +110,7 @@ public class RSSHandler extends DefaultHandler {
 				Log.i(RSSHandler.class.getSimpleName(),this.contentTitle);
 				// Speichern des Titels
 				myContent.setTitel(this.contentTitle);
-				// Zwischenspeicher wird "gelöscht"
+				// Zwischenspeicher wird "geloescht"
 				this.contentTitle = "";
 			}
 		}

@@ -1,5 +1,10 @@
 package com.vorlesungsplan;
 
+/**
+ * Klasse zur Verwaltung von Studiengaengen
+ * @author marc.meese
+ *
+ */
 public class Studiengang{
     private int id;
     private String name;

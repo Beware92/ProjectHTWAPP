@@ -14,6 +14,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+/**
+ * Klasse zum Abruf von Vorlesungsplaenen
+ * @author marc.meese
+ *
+ */
 public class StundenPlanActivity extends Activity {
 
 	Fakultaet[] items = { new Fakultaet(1, "IngWI"),

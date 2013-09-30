@@ -9,6 +9,11 @@ import android.view.Menu;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+/**
+ * Klasse zur Anzeige von HTML Dateien
+ * @author marc.meese
+ *
+ */
 public class HTMLVIEW extends Activity {
 
 	

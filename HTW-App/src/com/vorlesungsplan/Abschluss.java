@@ -1,5 +1,10 @@
 package com.vorlesungsplan;
 
+/**
+ * Klasse zur Verwaltung von Abschluessen
+ * @author marc.meese
+ *
+ */
 public class Abschluss {
     private int id;
     private String name;

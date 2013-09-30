@@ -34,6 +34,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+/**
+ * Klasse zur Verwaltung von Ingenieursfakultaeten
+ * @author marc.meese
+ *
+ */
 public class IngWI extends Activity {
 	
 	boolean filesLoaded= false;
@@ -135,6 +140,11 @@ public class IngWI extends Activity {
 		});
 	}
 	
+	/**
+	 * Methode zum Download des Vorlesungsplans
+	 * @author marc.meese
+	 *
+	 */
 	private void downloadFiles(){
 		Log.d("INFO", "downloadFiles()");
 		if(filesLoaded == false){
@@ -258,6 +268,11 @@ public class IngWI extends Activity {
 	}
 	
 	
+	/**
+	 * Klasse zum Download von Vorlesungsplaenen
+	 * @author marc.meese
+	 *
+	 */
 	private class DownloadFilesTask extends AsyncTask<String, Integer, String> {
 
 		@Override

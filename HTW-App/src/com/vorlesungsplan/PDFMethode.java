@@ -5,11 +5,15 @@ import com.example.htw_app.R;
 import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 import android.os.Bundle;
 
+/**
+ * Klasse zur Verwaltung von PDF Dateien
+ * @author marc.meese
+ *
+ */
 public class PDFMethode extends PdfViewerActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    // TODO Auto-generated method stub
 	    super.onCreate(savedInstanceState);
 	}
 

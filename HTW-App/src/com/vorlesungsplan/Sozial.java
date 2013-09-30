@@ -25,6 +25,11 @@ import android.widget.Toast;
 
 import com.example.htw_app.R;
 
+/**
+ * Klasse zur Verwaltung des Studiengangs "Sozial"
+ * @author marc.meese
+ *
+ */
 public class Sozial extends Activity {
 
 	boolean filesLoaded = false;
@@ -81,6 +86,11 @@ public class Sozial extends Activity {
 
 	}
 
+	/**
+	 * Methode um Vorlesungsplan herunterzuladen
+	 * @author marc.meese
+	 *
+	 */
 	private void downloadFiles() {
 		Log.d("INFO", "downloadFiles()");
 		if (filesLoaded == false) {
@@ -130,6 +140,11 @@ public class Sozial extends Activity {
 		return true;
 	}
 
+	/**
+	 * Klasse zur Verwaltung des Plandownloads
+	 * @author marc.meese
+	 *
+	 */
 	private class DownloadFilesTask extends AsyncTask<String, Integer, String> {
 
 		@Override

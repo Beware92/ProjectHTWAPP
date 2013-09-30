@@ -26,6 +26,11 @@ import android.widget.Toast;
 
 import com.example.htw_app.R;
 
+/**
+ * Klasse zur Verwaltung von Architektur und Bau-Ingenieursfakultaeten
+ * @author marc.meese
+ *
+ */
 public class ArchBau extends Activity {
 
 	ProgressDialog mProgressDialog;
@@ -84,6 +89,11 @@ public class ArchBau extends Activity {
 
 	}
 
+	/**
+	 * Methode zum Download der Vorlesungsplaene
+	 * @author marc.meese
+	 *
+	 */
 	private void downloadFiles() {
 		Log.d("INFO", "downloadFiles()");
 		if (filesLoaded == false) {
@@ -166,6 +176,11 @@ public class ArchBau extends Activity {
 		return true;
 	}
 
+	/**
+	 * Methode zum Download von Vorlesungsplaenen
+	 * @author marc.meese
+	 *
+	 */
 	private class DownloadFilesTask extends AsyncTask<String, Integer, String> {
 
 		@Override
