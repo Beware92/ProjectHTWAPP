@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_layout_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/light_grey"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android1:layout_width="wrap_content"
+        android1:layout_height="match_parent"
+        android1:orientation="vertical" >
+
+        <TextView
+            android1:id="@+id/textViewDetailInformation"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Detail Information"
+            android:gravity="center"
+            android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+        <TextView
+            android1:id="@+id/textViewDetailStatus"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Status:" />
+
+        <TextView
+            android1:id="@+id/textViewDetailVersuch"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Versuch:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailPunkte"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Punkte:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailNote"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Note:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailOptionaleNote"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Optionale Note:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailSemester"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Semester:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailDatum"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Datum:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailBemerkung"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Bemerkung:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android1:id="@+id/textViewDetailBesprechung"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Besprechung:"
+            android1:textAppearance="?android:attr/textAppearanceSmall" />
+
+    </LinearLayout>
+ 
+</LinearLayout>

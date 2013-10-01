@@ -63,8 +63,8 @@ public final class R {
         public static final int ImageButtonFloorUp=0x7f0a0009;
         public static final int LinearLayout1=0x7f0a0005;
         public static final int RelativeLayout1=0x7f0a0000;
-        public static final int action_mensa_refresh=0x7f0a005c;
-        public static final int anzeigen_settings=0x7f0a005b;
+        public static final int action_mensa_refresh=0x7f0a0067;
+        public static final int anzeigen_settings=0x7f0a0066;
         public static final int btExit=0x7f0a0054;
         public static final int btOK=0x7f0a0055;
         public static final int buttonAbout=0x7f0a0013;
@@ -90,16 +90,16 @@ public final class R {
         public static final int imageHTW=0x7f0a000c;
         public static final int list=0x7f0a003e;
         public static final int listView1=0x7f0a0047;
-        public static final int menu_settings=0x7f0a0059;
+        public static final int menu_settings=0x7f0a0064;
         public static final int pagenum_edit=0x7f0a004a;
         public static final int price=0x7f0a004e;
         public static final int roomList=0x7f0a0042;
         public static final int roomSearchButton=0x7f0a0041;
         public static final int rssFeedListe=0x7f0a003f;
         public static final int rssWebView=0x7f0a0004;
-        public static final int rss_settings=0x7f0a005d;
+        public static final int rss_settings=0x7f0a0068;
         public static final int searchText=0x7f0a0040;
-        public static final int settings_vorlesungsplan=0x7f0a005a;
+        public static final int settings_vorlesungsplan=0x7f0a0065;
         public static final int tableRow1=0x7f0a0020;
         public static final int tableRow10=0x7f0a0035;
         public static final int tableRow11=0x7f0a0037;
@@ -140,6 +140,16 @@ public final class R {
         public static final int textView8=0x7f0a0026;
         public static final int textView9=0x7f0a0028;
         public static final int textViewCurrentFloor=0x7f0a0008;
+        public static final int textViewDetailBemerkung=0x7f0a0062;
+        public static final int textViewDetailBesprechung=0x7f0a0063;
+        public static final int textViewDetailDatum=0x7f0a0061;
+        public static final int textViewDetailInformation=0x7f0a005a;
+        public static final int textViewDetailNote=0x7f0a005e;
+        public static final int textViewDetailOptionaleNote=0x7f0a005f;
+        public static final int textViewDetailPunkte=0x7f0a005d;
+        public static final int textViewDetailSemester=0x7f0a0060;
+        public static final int textViewDetailStatus=0x7f0a005b;
+        public static final int textViewDetailVersuch=0x7f0a005c;
         public static final int textViewName=0x7f0a0051;
         public static final int textViewNotenauskunft=0x7f0a003a;
         public static final int textViewPopUpContent=0x7f0a0044;
@@ -149,11 +159,12 @@ public final class R {
         public static final int textViewStatus=0x7f0a001b;
         public static final int textViewTitle=0x7f0a0050;
         public static final int title=0x7f0a004b;
+        public static final int toast_layout_root=0x7f0a0059;
         public static final int toggleButtonRoomDesc=0x7f0a000a;
         public static final int touchImageViewOut=0x7f0a0006;
         public static final int username_view=0x7f0a0049;
         public static final int webview=0x7f0a0048;
-        public static final int webview_settings=0x7f0a005e;
+        public static final int webview_settings=0x7f0a0069;
     }
     public static final class layout {
         public static final int activity_about=0x7f030000;
@@ -175,6 +186,7 @@ public final class R {
         public static final int listviewelement_searchroom=0x7f030010;
         public static final int pdf_file_password=0x7f030011;
         public static final int stundenplan=0x7f030012;
+        public static final int toast_layout_notenauskunft=0x7f030013;
     }
     public static final class menu {
         public static final int action_bar=0x7f090000;
