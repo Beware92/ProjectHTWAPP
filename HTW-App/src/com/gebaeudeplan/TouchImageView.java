@@ -25,7 +25,7 @@ public class TouchImageView extends ImageView {
     PointF last = new PointF();
     PointF start = new PointF();
     float minScale = 1f;
-    float maxScale = 20f; //3 native
+    float maxScale = 20f;
     float[] m;
 
 
@@ -183,9 +183,7 @@ public class TouchImageView extends ImageView {
         viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         
-        //
         // Rescales image on rotation
-        //
         if (oldMeasuredHeight == viewWidth && oldMeasuredHeight == viewHeight
                 || viewWidth == 0 || viewHeight == 0)
             return;
@@ -193,7 +191,7 @@ public class TouchImageView extends ImageView {
         oldMeasuredWidth = viewWidth;
 
         if (saveScale == 1) {
-            //Fit to screen.
+            //Fit to screen
             float scale;
 
             Drawable drawable = getDrawable();

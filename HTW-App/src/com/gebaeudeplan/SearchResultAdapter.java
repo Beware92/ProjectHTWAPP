@@ -13,6 +13,12 @@ import android.widget.TextView;
 
 import com.example.htw_app.R;
 
+/**
+ * Class to define an own adapter, to customize the display of searchresults
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class SearchResultAdapter extends ArrayAdapter<SearchResultElement>   {
 	
 	Context context;
@@ -26,10 +32,8 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResultElement>   {
 
     private class ViewHolder {
         TextView nameView;
-
         TextView roomView;
         TextView titleView;
-       
     }
     
     public View getView(int position, View convertView, ViewGroup parent) {

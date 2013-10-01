@@ -34,6 +34,12 @@ import android.widget.ToggleButton;
 
 import com.example.htw_app.R;
 
+/**
+ * Class to initialise and search through the database
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class RoomSearchActivity extends Activity implements View.OnClickListener, DialogInterface.OnClickListener, OnItemClickListener {
 	    
     private int rowIdName;
@@ -44,7 +50,6 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
     private int rowIdMail;
     private int rowId;
     
-    private PopupWindow popUpWindow;
     private ImageButton searchButton;
     private EditText searchText;
     private ListView listView;
@@ -52,7 +57,7 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
     
     
     private String regEx = ".*";
-    private String vorwahl = "0681 5867 ";
+    private String vorwahl = "0681 5867 ";	//Phone-prefix
 
     
     @Override
@@ -75,12 +80,16 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
         listView = (ListView) findViewById(R.id.roomList);      
     }
     
-
+    /**
+     * Search-method
+     * 
+     * Get database by query, filter elements by the searchstring
+     * and return them to an SearchResultAdapter 
+     */
     private void search() {
+    	
     	try {
-    		
-    		
-    		
+
     		resultList = new ArrayList<SearchResultElement>();
     		
 			DatabaseHelper dbHelper;
@@ -92,8 +101,6 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 			
 			String[] searchString = searchText.getText().toString().split("\\s+");
 			
-			
-			Log.i("Cursor", ""+result.getCount());
 
 				
 			if (result.moveToFirst()) {
@@ -133,7 +140,7 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 					Log.i("***", foundElement.toString());
 				}
 
-			} while (result.moveToNext()); //FIXME DB schliessen
+			} while (result.moveToNext());
 			
 			if (resultList.size() == 0) {
 				resultList.add(new SearchResultElement("Keine Einträge gefunden","","","","","",0));db.close();
@@ -141,6 +148,7 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 				
 				SearchResultAdapter adapter = new SearchResultAdapter(this, R.id.roomList, resultList);
 				listView.setAdapter(adapter);
+				
 			} else {
 				db.close();
 				result.close();
@@ -160,6 +168,15 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		}
     }
     
+    /**
+     * Compares Strings to overgiven arguments
+     * 
+     * @param toCompare
+     * @param s1
+     * @param s2
+     * @param s3
+     * @return true/false
+     */
     private boolean matchesString (String toCompare, String s1, String s2, String s3) {
     	if (s1.matches(regEx + toCompare + regEx) | s2.matches(regEx + toCompare + regEx) | s3.matches(regEx + toCompare + regEx)) {
     		return true;
@@ -168,7 +185,9 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
     }
 
 
-
+    /**
+     * Handles clicks on listitems and open the detailview for the selected item
+     */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		SearchResultElement selectedElement = (SearchResultElement) listView.getItemAtPosition(position);
@@ -182,8 +201,6 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		
 		String info = "";
 		String headLine = title + " " + prename + " " + name;
-
-		
 
 		
 		if (room.length() > 1) {
@@ -208,12 +225,6 @@ public class RoomSearchActivity extends Activity implements View.OnClickListener
 		
 		detailIntent.putExtras(detailBundle);
 		startActivity(detailIntent);
-		
-
-		
-		
-		//REM vortrag: oeffnungszeiten einfuegen + sonstige infos
-		
 
 		
 	}

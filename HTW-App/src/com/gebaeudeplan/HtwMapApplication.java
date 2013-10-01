@@ -5,13 +5,18 @@ package com.gebaeudeplan;
 import android.app.Application;
 import android.graphics.drawable.Drawable;
 
-
+/**
+ * Class HtwMapApplication to store maps in an object
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class HtwMapApplication extends Application
 {
 	/**
-	 * 
+	 * Constructor
 	 */
-	//private static final long serialVersionUID = 1L;
+
 	private static HtwMapApplication instance;
 	private static Drawable mapFloorE;
 	private static Drawable mapFloorEnoDesc;

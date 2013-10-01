@@ -92,33 +92,6 @@ public class MainActivity extends Activity {
 		});
 	}
 
-	// onCreateOptionsMenu, ActionBar wird erstellt
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.action_bar, menu);
 
-		return super.onCreateOptionsMenu(menu);
-	}
-
-	// onOptionsItemSelected, reagiert auf klicks der ActionBar
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		/*
-		switch (item.getItemId()) {
-		case R.id.menu_settings: {
-			// SettingsActivity öffnen
-			Intent intentSettings = new Intent(this, SettingsActivity.class);
-			startActivity(intentSettings);
-
-			return true;
-		}
-		default: {
-			return super.onOptionsItemSelected(item);
-		}
-		}
-		*/
-		return true; //FIXME zeile entfernen!
-	}
 }
 
