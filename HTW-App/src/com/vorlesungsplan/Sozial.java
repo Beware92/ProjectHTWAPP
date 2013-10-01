@@ -48,10 +48,7 @@ public class Sozial extends Activity {
 		
 		items  = new Studiengang[]{
 				new Studiengang(1,
-						getString(R.string.studiengang_mueipugs)),
-				new Studiengang(2, getString(R.string.studiengang_sapdk)),
-				new Studiengang(3, getString(R.string.studiengang_pdk)),
-				new Studiengang(4, getString(R.string.studiengang_p)) };
+						getString(R.string.studiengang_mueipugs)) };
 
 		fileIndex = 0;
 		opener = new PlanOpener();

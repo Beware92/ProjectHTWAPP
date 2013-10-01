@@ -30,10 +30,10 @@ public class Globals {
 	final static String INGWIEE_URL ="http://www.htw-saarland.de/ingwi/studium/studienbereich-energiesystemtechnik/dokumente/stundenplan-ee-stand-23-04-2013-pdf";
 	final static String EEFilename = INGWIEE_URL.substring(INGWIEE_URL.lastIndexOf("/")).replaceFirst("/", "");
 	
-	final static String INGWIETB_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/bachelor-studiengang-elektrotechnik-sommersemester-2013";
+	final static String INGWIETB_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/bachelor-studiengang-elektrotechnik-wintersemester-2013-14";
 	final static String ETBFilename = INGWIETB_URL.substring(INGWIETB_URL.lastIndexOf("/")).replaceFirst("/", "");
 	
-	final static String INGWIETM_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/master-studiengang-elektrotechnik-sommersemester-2013";
+	final static String INGWIETM_URL = "http://www.htw-saarland.de/Members/e-sek/vorlesungsplan/master-studiengang-elektrotechnik-wintersemester-2013-14";
 	final static String ETMFilename = INGWIETM_URL.substring(INGWIETM_URL.lastIndexOf("/")).replaceFirst("/", "");
 		
 	final static String ARCHB_URL = "http://www.htw-saarland.de/aub/Studium/schule-fuer-architektur-saar/aktuell/ba_ss2013_kompakt2.pdf";
