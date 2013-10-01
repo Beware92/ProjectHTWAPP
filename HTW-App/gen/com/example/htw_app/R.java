@@ -81,9 +81,9 @@ public final class R {
         public static final int editTextMatrikelnummer=0x7f0a0038;
         public static final int editTextPasswort=0x7f0a0039;
         public static final int etPassword=0x7f0a0053;
-        public static final int ibtnAuB=0x7f0a0057;
-        public static final int ibtnIngwi=0x7f0a0056;
-        public static final int ibtnSowi=0x7f0a0058;
+        public static final int ibtnAuB=0x7f0a0056;
+        public static final int ibtnIngwi=0x7f0a0058;
+        public static final int ibtnSowi=0x7f0a0057;
         public static final int icon=0x7f0a004c;
         public static final int imageButtonPopUpMail=0x7f0a0046;
         public static final int imageButtonPopUpPhone=0x7f0a0045;
