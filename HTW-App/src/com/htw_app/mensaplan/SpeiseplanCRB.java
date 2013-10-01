@@ -1,4 +1,4 @@
-package com.example.htw_app.mensaplan;
+package com.htw_app.mensaplan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class SpeiseplanCRB extends Activity {
 
 		setContentView(R.layout.activity_mensa);
 
-		final TextView textView1 = (TextView) findViewById(R.id.textView1);
+		final TextView textView1 = (TextView) findViewById(R.id.textViewStatus);
 		final TextView textView2 = (TextView) findViewById(R.id.textView2);
 		final TextView textView3 = (TextView) findViewById(R.id.textView3);
 		final TextView textView4 = (TextView) findViewById(R.id.textView4);
@@ -211,7 +211,7 @@ public class SpeiseplanCRB extends Activity {
 
 	class LoadAllProducts extends AsyncTask<String, String, String> {
 		
-		final TextView textView1 = (TextView) findViewById(R.id.textView1);
+		final TextView textView1 = (TextView) findViewById(R.id.textViewStatus);
 		final TextView textView2 = (TextView) findViewById(R.id.textView2);
 		final TextView textView3 = (TextView) findViewById(R.id.textView3);
 		final TextView textView4 = (TextView) findViewById(R.id.textView4);

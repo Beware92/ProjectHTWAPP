@@ -5,6 +5,12 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Class to create an local database for the phonelist
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	public static final String DATABASE_NAME = "roomlist.db";

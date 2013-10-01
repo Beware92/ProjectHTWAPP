@@ -1,14 +1,21 @@
 package com.htw_app.notenauskunft;
+
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Klasse zur implementierung einer Datenbank
+ * 
+ * @author Andreas Görres
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String DATABASE_NAME = "notenauskunft.db";
 	private static final int DATABASE_VERSION = 1;
 
+	/*
 	public static final String TABLE_NOTEN_KOPFDATEN = "noten_kopfdaten";
 	public static final String NOTEN_KOPFDATEN_FIELD_ID = "id";
 	public static final String NOTEN_KOPFDATEN_TYPE_ID = "INTEGER";
@@ -70,6 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String NOTEN_DETAILDATEN_TYPE_BESPRECHUNG = "TEXT";
 	public static final String NOTEN_DETAILDATEN_FIELD_DECNOTE = "decnote";
 	public static final String NOTEN_DETAILDATEN_TYPE_DECNOTE = "REAL";
+	*/
 	
 	public static final String TABLE_BENUTZER = "user";
 	public static final String BENUTZER_FIELD_ID = "id";
@@ -81,6 +89,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String BENUTZER_FIELD_STATUS = "status";
 	public static final String BENUTZER_TYPE_STATUS = "TEXT";
 	
+	/*
 	private static final String CREATE_TABLE_NOTEN_KOPFDATEN = "CREATE TABLE " + TABLE_NOTEN_KOPFDATEN
 	+ "("
 		+ NOTEN_KOPFDATEN_FIELD_ID              + " " + NOTEN_KOPFDATEN_TYPE_ID                + " PRIMARY KEY AUTOINCREMENT" + ", "
@@ -117,6 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		+ NOTEN_DETAILDATEN_FIELD_BESPRECHUNG  + " " + NOTEN_DETAILDATEN_TYPE_BESPRECHUNG                               + ", "
 		+ NOTEN_DETAILDATEN_FIELD_DECNOTE      + " " + NOTEN_DETAILDATEN_TYPE_DECNOTE
 	+ ")";
+	*/
 	
 	private static final String CREATE_TABLE_BENUTZER = "CREATE TABLE " + TABLE_BENUTZER
 	+ "("
@@ -132,11 +142,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	public void onCreate(SQLiteDatabase db) {
 		try {
+			/*
 			db.execSQL(CREATE_TABLE_NOTEN_KOPFDATEN);
 			db.execSQL(CREATE_TABLE_NOTEN_DETAILDATEN);
+			*/
 			db.execSQL(CREATE_TABLE_BENUTZER);
 			
-			db.execSQL("INSERT INTO user (id, mtknr, passwort, status) VALUES ('1', '3584062', 'takeover', 'logout')");
+			db.execSQL("INSERT INTO user (id, mtknr, passwort, status) VALUES ('1', '3584063', 'takeover', 'logout')");
 		} catch (SQLException ex) {
 			Log.d("HTW-App", "DatabaseHelper: " + ex);
 		}

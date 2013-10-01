@@ -1,4 +1,4 @@
-package com.example.htw_app.mensaplan;
+package com.htw_app.mensaplan;
 
 import java.io.BufferedReader;
 import java.io.IOException;

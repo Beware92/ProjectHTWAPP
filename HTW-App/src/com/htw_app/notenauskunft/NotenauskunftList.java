@@ -23,6 +23,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+/**
+ * Klasse NotenauskunftList zum darstellen von Noten
+ * 
+ * @author Andreas Görres
+ */
 public class NotenauskunftList extends Activity implements OnItemClickListener {
 	private ListView listView;
 
@@ -54,7 +59,6 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 	private static final String TAG_ABMELDEDATUM = "abmeldedatum";
 	private static final String TAG_ART = "art";
 	private static final String TAG_MODULNR = "modulnr";
-	private static final String TAG_NOTE = "note";
 
 	private static final String URL_ALL_DATA_NOTEN_DETAILDATEN = "http://htwapp.ohost.de/get_all_data_noten_detaildaten.php";
 	private static final String TAG_SUCCESS2 = "success";
@@ -93,7 +97,8 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 					"Internetverbindung notwendig!", Toast.LENGTH_SHORT).show();
 		}
 	}
-
+	
+	/** Ueberprueft ob eine Internetverbindung besteht */
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -103,6 +108,7 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 		return false;
 	}
 
+	/** Stellt alle Items aus dem Adapter dar */
 	public boolean setAdapter() {
 		adapter = new CustomListViewAdapter(this, R.layout.list_item,
 				refreshAdapter);
@@ -111,7 +117,8 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 
 		return true;
 	}
-
+	
+	/** Zeigt Toast (mit weiteren Informationen) an wenn man auf ein Element in der Liste klickt */
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -135,6 +142,7 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 
 	}
 
+	/** Sucht in der refreshDetail liste nach einem Element und gibt es mit der toString-Methode zurueck  */
 	public String sucheDetail(String suchString) {
 		for (int i = 0; i < refreshDetail.size(); i++) {
 			if (suchString.equals(refreshDetail.get(i).getFnr2())) {
@@ -145,6 +153,7 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 		return null;
 	}
 
+	/** Laet daten aus der externen Datenbank */
 	class LoadAllProducts extends AsyncTask<String, String, String> {
 
 		@Override
@@ -207,14 +216,12 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 						String abmeldedatum = c.getString(TAG_ABMELDEDATUM);
 						String art = c.getString(TAG_ART);
 						String modulnr = c.getString(TAG_MODULNR);
-						String note = c.getString(TAG_NOTE);
 
 						if (mtknrDB.equals(mtknr)) {
 							Kopfdaten rowItem = new Kopfdaten(id, mtknr, fnr,
 									abschnitt, stg, fach, versuch, pflicht,
 									wichtung, semester, pstatus, cpcredit,
-									reihenfolge, abmeldedatum, art, modulnr,
-									note);
+									reihenfolge, abmeldedatum, art, modulnr);
 							refreshAdapter.add(rowItem);
 						}
 
@@ -259,8 +266,7 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 				}
 
 			} catch (Exception e) {
-				Log.e("HTW-App", "test:", e);
-				// e.printStackTrace();
+				//Log.e("HTW-App", "test:", e);
 			}
 
 			return null;

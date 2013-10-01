@@ -1,4 +1,4 @@
-package com.example.htw_app.mensaplan;
+package com.htw_app.mensaplan;
 
 public class Informationen {
 	private int id;

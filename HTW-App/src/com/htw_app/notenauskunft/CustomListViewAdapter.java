@@ -10,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+/**
+ * Klasse, die einen CustomListViewAdapter implementiert
+ * 
+ * @author Andreas Görres
+ */
 public class CustomListViewAdapter extends ArrayAdapter<Kopfdaten> {
 
 	Context context;
@@ -20,7 +25,9 @@ public class CustomListViewAdapter extends ArrayAdapter<Kopfdaten> {
 		this.context = context;
 	}
 
-	/* private view holder class */
+	/**
+	 * private view holder class
+	 */
 	private class ViewHolder {
 		TextView txtTitle;
 		TextView txtDesc;
@@ -46,8 +53,8 @@ public class CustomListViewAdapter extends ArrayAdapter<Kopfdaten> {
 
 		holder.txtTitle.setText(rowItem.getFach());
 		holder.txtDesc.setText(rowItem.getAbschnitt());
-		holder.txtPrice.setText("ECTS: " + rowItem.getCpcredit() + " (Pflicht: "
-				+ rowItem.getPflicht() + ")");
+		holder.txtPrice.setText("ECTS: " + rowItem.getCpcredit()
+				+ " (Pflicht: " + rowItem.getPflicht() + ")");
 
 		return convertView;
 	}

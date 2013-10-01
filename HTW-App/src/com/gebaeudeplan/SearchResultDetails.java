@@ -1,8 +1,5 @@
 package com.gebaeudeplan;
 
-import com.example.htw_app.MainActivity;
-import com.example.htw_app.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +8,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.example.htw_app.R;
 
+
+
+/**
+ * Class to display details of database entrys
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class SearchResultDetails extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,31 +47,28 @@ public class SearchResultDetails extends Activity {
         	buttonMail.setEnabled(true);
         }
         
+        /**
+         * Starts intent to the android phoneapp
+         */
         buttonPhone.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 	            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+phone));
 	            startActivity(phoneIntent);
-	            
-	            
-
 			}
 		});
         
+        /**
+         * Starts intent to the default mailapp
+         */
         buttonMail.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 	            Intent mailIntent = new Intent(Intent.ACTION_SEND);
 	            mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { mail });
-
-	 
-	            // need this to prompts email client only
 	            mailIntent.setType("message/rfc822");
-	 
 	            startActivity(Intent.createChooser(mailIntent, "E-Mail Client"));
 	 
 			}
 		});
-        
-        
-        
+     
     }
 }

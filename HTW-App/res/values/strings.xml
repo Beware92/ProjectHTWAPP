@@ -46,8 +46,17 @@
     <string name="togglebutton_roomson">Rauminfos</string>
     <string name="togglebutton_roomsoff">Rauminfos</string>
     
-    <string name="impressum_title">HTW-App Version 1.01 (Closed-Beta Version)</string>
-    <string name="impressum_credits">Autoren:\nRezky Anugerah\nLukas Cangelosi\nMarc Meese\nCheng Li\nThomas Quitter</string>
+    <string name="impressum_title">HTW-App Version 1.01\n(Closed-Beta Version)</string>
+    <string name="impressum_credits">Autoren:\nRezky Anugerah\nLukas Cangelosi\nMarc Meese\nCheng Li\nAndreas Görres\nThomas Quitter</string>
+    <string name="impressum_disclaimer">COPYRIGHTS:Copyright 2013 HTW Saarbrücken. All Rights Reserved.
+		The HTW-App software is Copyright 2013 HTW Saarbrücken. All
+		rights reserved. This software may not, in whole or in any part, be
+		copied, reproduced, transmitted, translated (into any language, natural
+		or computer), stored in a retrieval system, reduced to any electronic
+		medium or machine readable format, or by any other form or means
+		without prior consent, in writing, from the HTW Saarbrücken.
+		You are granted a limited license to use this software.</string>
+    
     <string name="studiengang_ms">Maschinenbau</string>
     <string name="studiengang_ee">Erneuerbare Energien</string>
     <string name="studiengang_bt">Biomedizinische Technik</string>

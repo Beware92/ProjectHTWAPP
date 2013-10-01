@@ -14,18 +14,25 @@
         android:layout_alignParentTop="true"
         android:text="@string/impressum_title"
         android:textColor="@color/red_htwlogo"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/impressum_disclaimer"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/meta_gray" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="44dp"
         android:text="@string/impressum_credits"
-        android:textColor="@color/meta_gray"
         android:textSize="17sp" />
 
 </RelativeLayout>

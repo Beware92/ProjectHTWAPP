@@ -1,5 +1,11 @@
 package com.gebaeudeplan;
 
+/**
+ * Class to define an object for searchresults, needed for the SearchResultAdapter
+ * 
+ * @author Thomas Quitter
+ *
+ */
 public class SearchResultElement {
 	private String name;
 	private String prename;
