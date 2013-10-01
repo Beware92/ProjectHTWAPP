@@ -5,6 +5,6 @@
         android:id="@+id/action_mensa_refresh"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="action_mensa_refresh"/>
+        android:title="Aktualisieren"/>
 
 </menu>

@@ -1,13 +1,22 @@
 package com.htw_app.notenauskunft;
 
+/**
+ * Klasse Detaildaten zum erstellen von Detaildaten-Objekten
+ * 
+ * @author Andreas Görres
+ */
 public class Detaildaten {
 	private String id2, mtknr2, fnr2, status, lfdversuch, punkte, pnote,
 			pdatum, grund, semester2, bemerkung, besprechung, decnote;
 
+	/**
+	 * Standartkonstruktor
+	 */
 	public Detaildaten(String id2, String mtknr2, String fnr2, String status,
 			String lfdversuch, String punkte, String pnote, String pdatum,
 			String grund, String semester2, String bemerkung,
 			String besprechung, String decnote) {
+
 		this.id2 = id2;
 		this.mtknr2 = mtknr2;
 		this.fnr2 = fnr2;
@@ -76,15 +85,10 @@ public class Detaildaten {
 	}
 
 	public String toString() {
-		return "Status: " + status + "\n" + 
-				"Versuch: \t" + lfdversuch + "\n" + 
-				"Punkte: \t" + punkte + "\n" + 
-				"Note: \t" + pnote + "\n" + 
-				"Datum: \t" + pdatum + "\n" + 
-				"Grund: \t" + grund + "\n" + 
-				"Semester: \t" + semester2 + "\n" + 
-				"Bemerkung: \t" + bemerkung + "\n" + 
-				"Besprechung: \t" + besprechung + "\n" + 
-				"Optionale Note: \t" + decnote;
+		return "Status: " + status + "\n" + "Versuch: " + lfdversuch + "\n"
+				+ "Punkte: " + punkte + "\n" + "Note: " + pnote + "\n"
+				+ "Optionale Note: " + decnote + "\n" + "Semester: "
+				+ semester2 + "\n" + "Datum: " + pdatum + "\n" + "Bemerkung: "
+				+ bemerkung + "\n" + "Besprechung: " + besprechung;
 	}
 }

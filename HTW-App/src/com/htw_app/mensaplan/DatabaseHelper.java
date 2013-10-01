@@ -1,4 +1,4 @@
-package com.example.htw_app.mensaplan;
+package com.htw_app.mensaplan;
 
 import android.content.Context;
 import android.database.SQLException;

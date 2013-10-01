@@ -2,11 +2,14 @@ package com.htw_app.notenauskunft;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.example.htw_app.R;
 import com.htw_app.notenauskunft.DatabaseHelper;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -23,14 +26,20 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Klasse Notenauskunf stellt ein Login-Prozess dar
+ * 
+ * @author Andreas Görres
+ */
 public class Notenauskunft extends Activity {
 
 	public static DatabaseHelper mDbHelper;
 	private ProgressDialog pDialog;
-	JSONParser jParser = new JSONParser();
-	JSONArray products = null;
+	private JSONParser jParser = new JSONParser();
+	private JSONArray products = null;
 	public static ArrayList<User> refreshAdapter;
 
 	private static final String URL_ALL_DATA_USER = "http://htwapp.ohost.de/get_all_data_user.php";
@@ -42,11 +51,21 @@ public class Notenauskunft extends Activity {
 
 	public boolean status;
 
+	/** Called when the activity is first created. */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_notenauskunft);
+
+		final Button buttonLogin = (Button) this.findViewById(R.id.buttonLogin);
+		final Button buttonLogout = (Button) this
+				.findViewById(R.id.buttonLogout);
+		final Button buttonShowList = (Button) this
+				.findViewById(R.id.buttonShowList);
+		final EditText editTextPasswort = (EditText) findViewById(R.id.editTextPasswort);
+		final EditText editTextMatrikelnummer = (EditText) findViewById(R.id.editTextMatrikelnummer);
+		final TextView textViewStatus = (TextView) findViewById(R.id.textViewStatus);
 
 		mDbHelper = new DatabaseHelper(this);
 		status = false;
@@ -60,13 +79,11 @@ public class Notenauskunft extends Activity {
 				DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'", null);
 		db.close();
 
-		refreshAdapter = new ArrayList<User>();
+		textViewStatus.setText("Status: ausgeloggt");
+		textViewStatus.setTextColor(getResources()
+				.getColor(R.color.red_htwlogo));
 
-		final Button buttonLogin = (Button) this.findViewById(R.id.buttonLogin);
-		final Button buttonShowList = (Button) this
-				.findViewById(R.id.buttonShowList);
-		final EditText editTextPasswort = (EditText) findViewById(R.id.editTextPasswort);
-		final EditText editTextMatrikelnummer = (EditText) findViewById(R.id.editTextMatrikelnummer);
+		refreshAdapter = new ArrayList<User>();
 
 		buttonLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -91,6 +108,28 @@ public class Notenauskunft extends Activity {
 							"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
 							.show();
 				}
+			}
+		});
+
+		buttonLogout.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				SQLiteDatabase db = Notenauskunft.mDbHelper
+						.getWritableDatabase();
+
+				ContentValues values = new ContentValues();
+				values.put(DatabaseHelper.BENUTZER_FIELD_STATUS, "logout");
+
+				db.update(DatabaseHelper.TABLE_BENUTZER, values,
+						DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'",
+						null);
+				db.close();
+
+				textViewStatus.setText("Status: ausgeloggt");
+				textViewStatus.setTextColor(getResources().getColor(
+						R.color.red_htwlogo));
+
+				Toast.makeText(Notenauskunft.this, "Logout erfolgreich!",
+						Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -125,16 +164,22 @@ public class Notenauskunft extends Activity {
 		});
 	}
 
+	/** Zeigt Toast an, ob Anmeldung erfolgreich war */
 	public void makeToast() {
 		if (status) {
 			Toast.makeText(this, "Anmeldung erfolgreich!", Toast.LENGTH_SHORT)
 					.show();
+			final TextView textViewStatus = (TextView) findViewById(R.id.textViewStatus);
+
+			textViewStatus.setText("Status: eingeloggt");
+			textViewStatus.setTextColor(getResources().getColor(R.color.green));
 		} else {
 			Toast.makeText(this, "Anmeldung fehlgeschlagen!",
 					Toast.LENGTH_SHORT).show();
 		}
 	}
 
+	/** Ueberprueft ob eine Internetverbindung besteht */
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo netInfo = cm.getActiveNetworkInfo();
@@ -144,6 +189,7 @@ public class Notenauskunft extends Activity {
 		return false;
 	}
 
+	/** Laet daten aus der externen Datenbank */
 	class LoadAllProducts extends AsyncTask<String, String, String> {
 		final EditText editTextMatrikelnummer = (EditText) findViewById(R.id.editTextMatrikelnummer);
 		final EditText editTextPasswort = (EditText) findViewById(R.id.editTextPasswort);
@@ -201,7 +247,6 @@ public class Notenauskunft extends Activity {
 											+ 1 + "'", null);
 							db.close();
 							status = true;
-							Log.d("HTW-App", "DatabaseHelper: ");
 
 						} else {
 							SQLiteDatabase db = Notenauskunft.mDbHelper
@@ -233,7 +278,7 @@ public class Notenauskunft extends Activity {
 					}
 				}
 			} catch (Exception e) {
-				// e.printStackTrace();
+				Log.d("HTW-App", "Notenauskunft: " + e);
 			}
 
 			return null;

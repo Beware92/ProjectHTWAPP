@@ -1,4 +1,4 @@
-package com.example.htw_app.mensaplan;
+package com.htw_app.mensaplan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SpeiseplanCAS extends Activity {
+public class SpeiseplanCRP extends Activity {
 	private ProgressDialog pDialog;
-	public static SpeiseplanCAS ma;
+	public static SpeiseplanCRP ma;
 	JSONParser jParser = new JSONParser();
 	JSONArray products = null;
 	JSONArray products2 = null;
@@ -33,7 +33,7 @@ public class SpeiseplanCAS extends Activity {
 	public static ArrayList<Zeile> zeilenAdapter;
 	public static ArrayList<Informationen> informationenAdapter;
 
-	private static final String URL_ALL_DATA_CAS = "http://htwapp.ohost.de/get_all_data_cas.php";
+	private static final String URL_ALL_DATA_CRP = "http://htwapp.ohost.de/get_all_data_crp.php";
 	private static final String URL_ALL_DATA_INFORMATIONEN = "http://htwapp.ohost.de/get_all_data_informationen.php";
 	private static final String TAG_SUCCESS = "success";
 	private static final String TAG_PRODUCTS = "data";
@@ -52,7 +52,7 @@ public class SpeiseplanCAS extends Activity {
 
 		setContentView(R.layout.activity_mensa);
 
-		final TextView textView1 = (TextView) findViewById(R.id.textView1);
+		final TextView textView1 = (TextView) findViewById(R.id.textViewStatus);
 		final TextView textView2 = (TextView) findViewById(R.id.textView2);
 		final TextView textView3 = (TextView) findViewById(R.id.textView3);
 		final TextView textView4 = (TextView) findViewById(R.id.textView4);
@@ -105,7 +105,7 @@ public class SpeiseplanCAS extends Activity {
 
 		doRawSelectInformationen();
 		for (int i = 0; i < informationenAdapter.size(); i++) {
-			if (i == 0) {
+			if (i == 2) {
 				Informationen info = informationenAdapter.get(i);
 				textView2.setText(info.getCampus());
 				textView1.setText(info.getWoche());
@@ -124,13 +124,12 @@ public class SpeiseplanCAS extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		
 		switch (item.getItemId()) {
 		case R.id.action_mensa_refresh:
 			if (isOnline()) {
 				new LoadAllProducts().execute();
 			} else {
-				Toast.makeText(SpeiseplanCAS.this,
+				Toast.makeText(SpeiseplanCRP.this,
 						"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
 						.show();
 			}
@@ -152,17 +151,17 @@ public class SpeiseplanCAS extends Activity {
 	public void doRawSelectMenue() {
 		zeilenAdapter.clear();
 		SQLiteDatabase db = new DatabaseHelper(this).getReadableDatabase();
-		String sql = "SELECT * FROM " + DatabaseHelper.TABLE_MENUE
-				+ " ORDER BY " + DatabaseHelper.MENUE_FIELD_ID;
+		String sql = "SELECT * FROM " + DatabaseHelper.TABLE_MENUE_CRP
+				+ " ORDER BY " + DatabaseHelper.MENUE_CRP_FIELD_ID;
 		Cursor result = db.rawQuery(sql, null);
 
 		if (result.moveToFirst()) {
-			int idIdx = result.getColumnIndex(DatabaseHelper.MENUE_FIELD_ID);
-			int tagIdx = result.getColumnIndex(DatabaseHelper.MENUE_FIELD_TAG);
+			int idIdx = result.getColumnIndex(DatabaseHelper.MENUE_CRP_FIELD_ID);
+			int tagIdx = result.getColumnIndex(DatabaseHelper.MENUE_CRP_FIELD_TAG);
 			int menue1Idx = result
-					.getColumnIndex(DatabaseHelper.MENUE_FIELD_MENUE1);
+					.getColumnIndex(DatabaseHelper.MENUE_CRP_FIELD_MENUE1);
 			int menue2Idx = result
-					.getColumnIndex(DatabaseHelper.MENUE_FIELD_MENUE2);
+					.getColumnIndex(DatabaseHelper.MENUE_CRP_FIELD_MENUE2);
 			do {
 				int id = result.getInt(idIdx);
 				String tag = result.getString(tagIdx);
@@ -212,7 +211,7 @@ public class SpeiseplanCAS extends Activity {
 
 	class LoadAllProducts extends AsyncTask<String, String, String> {
 		
-		final TextView textView1 = (TextView) findViewById(R.id.textView1);
+		final TextView textView1 = (TextView) findViewById(R.id.textViewStatus);
 		final TextView textView2 = (TextView) findViewById(R.id.textView2);
 		final TextView textView3 = (TextView) findViewById(R.id.textView3);
 		final TextView textView4 = (TextView) findViewById(R.id.textView4);
@@ -235,7 +234,7 @@ public class SpeiseplanCAS extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			pDialog = new ProgressDialog(SpeiseplanCAS.this);
+			pDialog = new ProgressDialog(SpeiseplanCRP.this);
 			pDialog.setMessage("Loading data. Please wait...");
 			pDialog.setIndeterminate(false);
 			pDialog.setCancelable(false);
@@ -247,7 +246,7 @@ public class SpeiseplanCAS extends Activity {
 
 			try {
 				List<NameValuePair> params = new ArrayList<NameValuePair>();
-				JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CAS, "GET",
+				JSONObject json = jParser.makeHttpRequest(URL_ALL_DATA_CRP, "GET",
 						params);
 				
 				int success = json.getInt(TAG_SUCCESS);
@@ -270,12 +269,12 @@ public class SpeiseplanCAS extends Activity {
 								.getWritableDatabase();
 
 						ContentValues values = new ContentValues();
-						values.put(DatabaseHelper.MENUE_FIELD_TAG, name);
-						values.put(DatabaseHelper.MENUE_FIELD_MENUE1, menue1);
-						values.put(DatabaseHelper.MENUE_FIELD_MENUE2, menue2);
+						values.put(DatabaseHelper.MENUE_CRP_FIELD_TAG, name);
+						values.put(DatabaseHelper.MENUE_CRP_FIELD_MENUE1, menue1);
+						values.put(DatabaseHelper.MENUE_CRP_FIELD_MENUE2, menue2);
 
-						db.update(DatabaseHelper.TABLE_MENUE, values,
-								DatabaseHelper.MENUE_FIELD_ID + "= '" + id
+						db.update(DatabaseHelper.TABLE_MENUE_CRP, values,
+								DatabaseHelper.MENUE_CRP_FIELD_ID + "= '" + id
 										+ "'", null);
 						db.close();
 					}
@@ -358,7 +357,7 @@ public class SpeiseplanCAS extends Activity {
 					
 					for (int i = 0; i < refreshInformationenAdapter.size(); i++) {
 						Informationen info = refreshInformationenAdapter.get(i);
-						if (i == 0) {
+						if (i == 2) {
 							textView1.setText(info.getWoche());
 							textView2.setText(info.getCampus());
 							textView21.setText(info.getBeilagen());
