@@ -27,6 +27,7 @@ public class HTMLVIEW extends Activity {
 		
 		
 		WebView myWebView = (WebView) findViewById(R.id.webview);
+		myWebView.getSettings().setBuiltInZoomControls(true);
        
         Intent urlIntent = getIntent();
         fileName = urlIntent.getCharSequenceExtra("url").toString();

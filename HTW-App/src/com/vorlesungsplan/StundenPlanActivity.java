@@ -42,7 +42,7 @@ public class StundenPlanActivity extends Activity {
 		// Button-Listener
 				buttonAuB.setOnClickListener(new OnClickListener() {
 					public void onClick(View arg0) {
-						// AboutActivity öffnen
+						// AboutActivity oeffnen
 						Intent myIntent = new Intent(StundenPlanActivity.this, ArchBau.class);
 						startActivity(myIntent);
 					}
@@ -51,7 +51,7 @@ public class StundenPlanActivity extends Activity {
 				// Button-Listener
 				buttonIngwi.setOnClickListener(new OnClickListener() {
 					public void onClick(View arg0) {
-						// AboutActivity öffnen
+						// AboutActivity oeffnen
 						Intent myIntent = new Intent(StundenPlanActivity.this, IngWI.class);
 						startActivity(myIntent);
 					}
@@ -60,7 +60,7 @@ public class StundenPlanActivity extends Activity {
 				// Button-Listener
 				buttonSowi.setOnClickListener(new OnClickListener() {
 					public void onClick(View arg0) {
-						// AboutActivity öffnen
+						// AboutActivity oeffnen
 						Intent myIntent = new Intent(StundenPlanActivity.this, Sozial.class);
 						startActivity(myIntent);
 					}

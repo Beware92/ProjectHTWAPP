@@ -72,7 +72,7 @@ public class IngWI extends Activity {
 
 		opener = new PlanOpener();
 		
-		//Zähler für downloadTask
+		//Zaehler fuer downloadTask
 		fileIndex = 0;
 		
 		//Ordner erstellen
