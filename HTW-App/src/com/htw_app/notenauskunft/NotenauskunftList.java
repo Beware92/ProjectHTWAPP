@@ -2,10 +2,13 @@ package com.htw_app.notenauskunft;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.example.htw_app.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,10 +20,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -126,7 +132,7 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 		String suchString = refreshAdapter.get(position).getFnr();
 		Log.d("HTW-App", "test:" + suchString);
 
-		String output = sucheDetail(suchString);
+		Detaildaten output = sucheDetail(suchString);
 
 		if (output == null) {
 			Toast toast = Toast.makeText(getApplicationContext(),
@@ -134,20 +140,44 @@ public class NotenauskunftList extends Activity implements OnItemClickListener {
 			toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
 			toast.show();
 		} else {
-			Toast toast = Toast.makeText(getApplicationContext(), output,
-					Toast.LENGTH_LONG);
-			toast.setGravity(Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
-			toast.show();
+			LayoutInflater inflater = getLayoutInflater();
+	        View layout = inflater.inflate(R.layout.toast_layout_notenauskunft,
+	                (ViewGroup) findViewById(R.id.toast_layout_root));
+	        Toast toast = new Toast(getApplicationContext());
+	        
+	        TextView textViewDetailStatus = (TextView) layout.findViewById(R.id.textViewDetailStatus);
+	        TextView textViewDetailVersuch = (TextView) layout.findViewById(R.id.textViewDetailVersuch);
+	        TextView textViewDetailPunkte = (TextView) layout.findViewById(R.id.textViewDetailPunkte);
+	        TextView textViewDetailNote = (TextView) layout.findViewById(R.id.textViewDetailNote);
+	        TextView textViewDetailOptionaleNote = (TextView) layout.findViewById(R.id.textViewDetailOptionaleNote);
+	        TextView textViewDetailSemester = (TextView) layout.findViewById(R.id.textViewDetailSemester);
+	        TextView textViewDetailDatum = (TextView) layout.findViewById(R.id.textViewDetailDatum);
+	        TextView textViewDetailBemerkung = (TextView) layout.findViewById(R.id.textViewDetailBemerkung);
+	        TextView textViewDetailBesprechung = (TextView) layout.findViewById(R.id.textViewDetailBesprechung);
+	        
+	        textViewDetailStatus.setText("Status: " + output.getStatus());
+	        textViewDetailVersuch.setText("Versuch: " + output.getLfdversuch());
+	        textViewDetailPunkte.setText("Punkte: " + output.getPunkte());
+	        textViewDetailNote.setText("Note: " + output.getPnote());
+	        textViewDetailOptionaleNote.setText("Optionale Note: " + output.getDecnote());
+	        textViewDetailSemester.setText("Semester: " + output.getSemester2());
+	        textViewDetailDatum.setText("Datum: " + output.getPdatum());
+	        textViewDetailBemerkung.setText("Bemerkung: " + output.getBemerkung());
+	        textViewDetailBesprechung.setText("Besprechung: " + output.getBesprechung());
+	        
+	        toast.setGravity(Gravity.CENTER, 0, 0);
+	        toast.setDuration(Toast.LENGTH_LONG);
+	        toast.setView(layout);
+	        toast.show();
 		}
-
 	}
 
 	/** Sucht in der refreshDetail liste nach einem Element und gibt es mit der toString-Methode zurueck  */
-	public String sucheDetail(String suchString) {
+	public Detaildaten sucheDetail(String suchString) {
 		for (int i = 0; i < refreshDetail.size(); i++) {
 			if (suchString.equals(refreshDetail.get(i).getFnr2())) {
 				Log.d("HTW-App", "test2:" + refreshDetail.get(i).getFnr2());
-				return refreshDetail.get(i).toString();
+				return refreshDetail.get(i);
 			}
 		}
 		return null;
