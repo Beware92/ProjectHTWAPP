@@ -3,28 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<ImageView
-    android:id="@+id/imageHTW"
-    android:layout_width="wrap_content"
-    android:layout_height="120dp"
-    android:contentDescription="@string/htw_logo"
-    android:src="@drawable/htw_logo" />
-
-<ImageButton
-    android:id="@+id/ibtnIngwi"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/imageHTW"
-    android:layout_centerHorizontal="true"
-    android:background="@drawable/ingwi"
-    android:src="@drawable/ingwi" />
-
 <ImageButton
     android:id="@+id/ibtnAuB"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignLeft="@+id/ibtnSowi"
     android:layout_below="@+id/ibtnIngwi"
+    android:layout_marginTop="109dp"
     android:background="@drawable/aub"
     android:src="@drawable/aub" />
 
@@ -32,9 +17,20 @@
     android:id="@+id/ibtnSowi"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/ibtnIngwi"
     android:layout_below="@+id/ibtnAuB"
-    android:layout_centerHorizontal="true"
+    android:layout_marginTop="102dp"
     android:background="@drawable/sowi"
     android:src="@drawable/sowi" />
+
+<ImageButton
+    android:id="@+id/ibtnIngwi"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/ingwi"
+    android:src="@drawable/ingwi" />
 
 </RelativeLayout>
