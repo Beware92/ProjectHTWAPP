@@ -1,88 +1,98 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android1="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toast_layout_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/light_grey"
     android:orientation="horizontal"
     android:padding="10dp" >
+-
 
-    <LinearLayout
-        android1:layout_width="wrap_content"
-        android1:layout_height="match_parent"
-        android1:orientation="vertical" >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+-
 
-        <TextView
-            android1:id="@+id/textViewDetailInformation"
+        <LinearLayout
             android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Detail Information"
-            android:gravity="center"
-            android1:textAppearance="?android:attr/textAppearanceMedium" />
+            android1:layout_height="match_parent"
+            android1:orientation="vertical" >
 
+            <TextView
+                android1:id="@+id/textViewDetailInformation"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android:gravity="center"
+                android1:text="Detail Information:"
+                android1:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView
-            android1:id="@+id/textViewDetailStatus"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Status:" />
+            <TextView
+                android1:id="@+id/textViewDetailStatus"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Status:"
+                android1:textColor="@color/red_htwlogo" />
 
-        <TextView
-            android1:id="@+id/textViewDetailVersuch"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Versuch:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailVersuch"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Versuch:"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android1:id="@+id/textViewDetailPunkte"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Punkte:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailPunkte"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Punkte:"
+                android1:textAppearance="?android:attr/textAppearanceSmall"
+                android1:textColor="@color/red_htwlogo" />
 
-        <TextView
-            android1:id="@+id/textViewDetailNote"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Note:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailNote"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Note:"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android1:id="@+id/textViewDetailOptionaleNote"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Optionale Note:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailOptionaleNote"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Optionale Note:"
+                android1:textAppearance="?android:attr/textAppearanceSmall"
+                android1:textColor="@color/red_htwlogo" />
 
-        <TextView
-            android1:id="@+id/textViewDetailSemester"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Semester:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailSemester"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Semester:"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android1:id="@+id/textViewDetailDatum"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Datum:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailDatum"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Datum:"
+                android1:textAppearance="?android:attr/textAppearanceSmall"
+                android1:textColor="@color/red_htwlogo" />
 
-        <TextView
-            android1:id="@+id/textViewDetailBemerkung"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Bemerkung:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailBemerkung"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Bemerkung:"
+                android1:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <TextView
-            android1:id="@+id/textViewDetailBesprechung"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="Besprechung:"
-            android1:textAppearance="?android:attr/textAppearanceSmall" />
+            <TextView
+                android1:id="@+id/textViewDetailBesprechung"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="Besprechung:"
+                android1:textAppearance="?android:attr/textAppearanceSmall"
+                android1:textColor="@color/red_htwlogo" />
+        </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
- 
 </LinearLayout>
