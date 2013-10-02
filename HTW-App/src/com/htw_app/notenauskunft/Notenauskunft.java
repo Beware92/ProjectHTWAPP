@@ -106,7 +106,15 @@ public class Notenauskunft extends Activity {
 					db.close();
 
 					if (isOnline()) {
-						new LoadAllProducts().execute();
+						try{
+							new LoadAllProducts().execute();
+						}
+						catch (Exception e){
+							Toast.makeText(Notenauskunft.this,
+									"Internetverbindungsfehler!", Toast.LENGTH_SHORT)
+									.show();
+							taskBusy = false;
+						}
 					} else {
 						Toast.makeText(Notenauskunft.this,
 								"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
