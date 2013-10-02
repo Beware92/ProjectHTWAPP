@@ -1,4 +1,4 @@
-package com.example.htw_app;
+package com.RSS;
 
 import java.util.ArrayList;
 import java.util.List;

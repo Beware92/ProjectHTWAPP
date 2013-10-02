@@ -1,6 +1,7 @@
 package com.example.htw_app;
 
 import com.htw_app.mensaplan.*;
+import com.RSS.RSSNewsAnzeigen;
 import com.gebaeudeplan.GebaeudeplanActivity;
 import com.htw_app.mensaplan.MensaActivity;
 import com.htw_app.notenauskunft.Notenauskunft;

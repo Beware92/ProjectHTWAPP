@@ -1,4 +1,4 @@
-package com.example.htw_app;
+package com.RSS;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,6 +13,10 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.xml.sax.SAXException;
+
+import com.example.htw_app.R;
+import com.example.htw_app.R.id;
+import com.example.htw_app.R.layout;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

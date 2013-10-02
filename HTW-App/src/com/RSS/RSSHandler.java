@@ -1,4 +1,4 @@
-package com.example.htw_app;
+package com.RSS;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
