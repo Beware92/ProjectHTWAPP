@@ -1,8 +1,4 @@
-package com.RSS;
-
-import com.example.htw_app.R;
-import com.example.htw_app.R.id;
-import com.example.htw_app.R.layout;
+package com.example.htw_app;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

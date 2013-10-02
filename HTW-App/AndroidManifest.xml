@@ -29,11 +29,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.htw_app.RSS.RSSFeedDetails"
+            android:name="com.example.htw_app.RSSFeedDetails"
             android:label="@string/title_rssAnzeigen" >
         </activity>
         <activity
-            android:name="com.com.htw_app.RSS.RSSNewsAnzeigen           android:label="@string/title_rssMain" >
+            android:name="com.example.htw_app.RSSNewsAnzeigen"
+            android:label="@string/title_rssMain" >
         </activity>
         <activity
             android:name="com.example.htw_app.AboutActivity"
