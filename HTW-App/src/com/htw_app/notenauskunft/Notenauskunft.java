@@ -48,6 +48,9 @@ public class Notenauskunft extends Activity {
 	private static final String TAG_ID = "id";
 	private static final String TAG_MTKNR = "mtknr";
 	private static final String TAG_PASSWORT = "passwort";
+	Button buttonLogin;
+	Button buttonLogout;
+	boolean taskBusy = false;
 
 	public boolean status;
 
@@ -55,11 +58,10 @@ public class Notenauskunft extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_notenauskunft);
 
-		final Button buttonLogin = (Button) this.findViewById(R.id.buttonLogin);
-		final Button buttonLogout = (Button) this
+		buttonLogin = (Button) this.findViewById(R.id.buttonLogin);
+		buttonLogout = (Button) this
 				.findViewById(R.id.buttonLogout);
 		final Button buttonShowList = (Button) this
 				.findViewById(R.id.buttonShowList);
@@ -87,49 +89,63 @@ public class Notenauskunft extends Activity {
 
 		buttonLogin.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				SQLiteDatabase db = Notenauskunft.mDbHelper
-						.getWritableDatabase();
+				if(!(taskBusy)){
 
-				ContentValues values = new ContentValues();
-				values.put(DatabaseHelper.BENUTZER_FIELD_MTKNR,
-						editTextMatrikelnummer.getText().toString());
-				values.put(DatabaseHelper.BENUTZER_FIELD_PASSWORT,
-						editTextPasswort.getText().toString());
+					SQLiteDatabase db = Notenauskunft.mDbHelper
+							.getWritableDatabase();
 
-				db.update(DatabaseHelper.TABLE_BENUTZER, values,
-						DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'",
-						null);
-				db.close();
+					ContentValues values = new ContentValues();
+					values.put(DatabaseHelper.BENUTZER_FIELD_MTKNR,
+							editTextMatrikelnummer.getText().toString());
+					values.put(DatabaseHelper.BENUTZER_FIELD_PASSWORT,
+							editTextPasswort.getText().toString());
 
-				if (isOnline()) {
-					new LoadAllProducts().execute();
-				} else {
-					Toast.makeText(Notenauskunft.this,
-							"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
-							.show();
+					db.update(DatabaseHelper.TABLE_BENUTZER, values,
+							DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'",
+							null);
+					db.close();
+
+					if (isOnline()) {
+						new LoadAllProducts().execute();
+					} else {
+						Toast.makeText(Notenauskunft.this,
+								"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
+								.show();
+					}
+				}
+				else{
+					Toast.makeText(Notenauskunft.this, "Bitte warten...",
+							Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
 
 		buttonLogout.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				SQLiteDatabase db = Notenauskunft.mDbHelper
-						.getWritableDatabase();
+				if(!(taskBusy)){
 
-				ContentValues values = new ContentValues();
-				values.put(DatabaseHelper.BENUTZER_FIELD_STATUS, "logout");
+					SQLiteDatabase db = Notenauskunft.mDbHelper
+							.getWritableDatabase();
 
-				db.update(DatabaseHelper.TABLE_BENUTZER, values,
-						DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'",
-						null);
-				db.close();
+					ContentValues values = new ContentValues();
+					values.put(DatabaseHelper.BENUTZER_FIELD_STATUS, "logout");
 
-				textViewStatus.setText("Status: ausgeloggt");
-				textViewStatus.setTextColor(getResources().getColor(
-						R.color.red_htwlogo));
+					db.update(DatabaseHelper.TABLE_BENUTZER, values,
+							DatabaseHelper.BENUTZER_FIELD_ID + "= '" + 1 + "'",
+							null);
+					db.close();
 
-				Toast.makeText(Notenauskunft.this, "Logout erfolgreich!",
-						Toast.LENGTH_SHORT).show();
+					textViewStatus.setText("Status: ausgeloggt");
+					textViewStatus.setTextColor(getResources().getColor(
+							R.color.red_htwlogo));
+
+					Toast.makeText(Notenauskunft.this, "Logout erfolgreich!",
+							Toast.LENGTH_SHORT).show();
+				}
+				else{
+					Toast.makeText(Notenauskunft.this, "Bitte warten...",
+							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
@@ -197,6 +213,7 @@ public class Notenauskunft extends Activity {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			taskBusy = true;
 			pDialog = new ProgressDialog(Notenauskunft.this);
 			pDialog.setMessage("Loading data. Please wait...");
 			pDialog.setIndeterminate(false);
@@ -284,9 +301,10 @@ public class Notenauskunft extends Activity {
 			return null;
 		}
 
-		protected void onPostExecute(String file_url) {
+		protected void onPostExecute(String file_url) {			
 			pDialog.dismiss();
 			makeToast();
+			taskBusy = false;
 		}
 	}
 }
