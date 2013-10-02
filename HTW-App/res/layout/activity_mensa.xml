@@ -270,16 +270,30 @@
 
             <TableRow
                 android:id="@+id/tableRow11"
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" >
-                
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+
+                <Button
+                    android:id="@+id/button1"
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_weight="100"
                     android:gravity="center"
+                    android:text="Aktualisieren" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/TableRow01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="" />
+
             </TableRow>
 
         </TableLayout>

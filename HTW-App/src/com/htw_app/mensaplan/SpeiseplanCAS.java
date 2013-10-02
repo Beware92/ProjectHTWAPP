@@ -2,11 +2,14 @@ package com.htw_app.mensaplan;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.example.htw_app.R;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -17,8 +20,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +75,8 @@ public class SpeiseplanCAS extends Activity {
 		final TextView textView17 = (TextView) findViewById(R.id.textView17);
 		final TextView textView21 = (TextView) findViewById(R.id.textView21);
 		final TextView textView22 = (TextView) findViewById(R.id.textView22);
+		final Button button1 = (Button) findViewById(R.id.button1);
+		
 
 		refreshAdapter = new ArrayList<Zeile>();
 		refreshInformationenAdapter = new ArrayList<Informationen>();
@@ -114,8 +120,20 @@ public class SpeiseplanCAS extends Activity {
 			}
 		}
 
+		button1.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				if (isOnline()) {
+					new LoadAllProducts().execute();
+				} else {
+					Toast.makeText(SpeiseplanCAS.this,
+							"Internetverbindung notwendig!", Toast.LENGTH_SHORT)
+							.show();
+				}
+			}
+		});
 	}
 
+	/*
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_mensa, menu);
@@ -139,6 +157,7 @@ public class SpeiseplanCAS extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	*/
 
 	public boolean isOnline() {
 		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
