@@ -246,7 +246,7 @@ public class GebaeudeplanActivity extends Activity {
 
 		protected String doInBackground(String... args) {
 			htwMap = new HtwMapApplication();
-			//Erdgeschoss - 0
+			//Erdgeschoss - E
 		    PictureDrawable floorE = SVGParser.getSVGFromResource(getResources(), R.raw.e).createPictureDrawable();
 		    htwMap.setMapFloorE(floorE);
 			PictureDrawable floorENoText = SVGParser.getSVGFromResource(getResources(), R.raw.eno).createPictureDrawable();
